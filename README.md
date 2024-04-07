@@ -6,8 +6,11 @@
 "Basicos"
 
 cero ::= 0
+
 digito ::= [1-9]
+
 digConCero ::= [0-9]
+
 letra ::= [a-zA-Z]
 caracteresEspeciales ::= [#|"|$|%|&|'|(|)|*|+|,|\|-|.|/|;|<|=|>|?|@|\|[|]|^|`|\|{|}|~]
 signo := '-'
