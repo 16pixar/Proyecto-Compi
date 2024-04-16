@@ -7,7 +7,8 @@ package codigo;
  */
 public enum Tokens {
     Linea,
-    Comillas,
+    ComillasD,
+    ComillasS,
     T_dato,
     Cadena,
     If,
@@ -37,8 +38,6 @@ public enum Tokens {
     DIGITOS,
     CERO,
     ERROR,
-    
-    
     DIGCONCERO, //[0-9]
     CARACTERESPECIALES, // [#|"|$|%|&|'|(|)|*|+|,|\|-|.|/|;|<|=|>|?|@|\|[|]|^|`|\|{|}|~]
     SIGNO, //'-'
@@ -61,5 +60,6 @@ public enum Tokens {
     WRITE,
     COMILLAS,
     COMILLAD,
-    CHAR
+    CHAR,
+    IDENTIFICADOR
 }

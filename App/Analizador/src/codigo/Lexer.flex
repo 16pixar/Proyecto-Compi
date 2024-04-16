@@ -6,11 +6,16 @@ import static codigo.Tokens.*;
 L=[a-zA-Z_]+
 D=[0-9]+
 cero=0
-espacio=[ ,\t,\r]+
+espacio=[\t,\r]+
 %{
     public String lexeme;
 %}
 %%
+
+
+/* Coma */
+( "," ) {lexeme=yytext(); return COMA;}
+
 
 /* Espacios en blanco */
 {espacio} {/*Ignore*/}
@@ -21,8 +26,12 @@ espacio=[ ,\t,\r]+
 /* Salto de linea */
 ( "\n" ) {return Linea;}
 
-/* Comillas */
-( "\"" ) {lexeme=yytext(); return Comillas;}
+/* ComillasD */
+( "\"" ) {lexeme=yytext(); return ComillasD;}
+
+/* ComillasS */
+( "\'" ) {lexeme=yytext(); return ComillasS;}
+
 
 /* Tipos de datos */
 ( byte | int | char | long | float | double ) {lexeme=yytext(); return T_dato;}
@@ -46,7 +55,7 @@ espacio=[ ,\t,\r]+
 ( for ) {lexeme=yytext(); return For;}
 
 /* IGUAL */
-( "=" ) {lexeme=yytext(); return Igual;}
+( "=" ) {lexeme=yytext(); return IGUAL;}
 
 /* Operador Suma */
 ( "+" ) {lexeme=yytext(); return Suma;}
@@ -76,22 +85,22 @@ espacio=[ ,\t,\r]+
 (true | false)      {lexeme = yytext(); return Op_booleano;}
 
 /* Parentesis de apertura */
-( "(" ) {lexeme=yytext(); return Parentesis_a;}
+( "(" ) {lexeme=yytext(); return LLAVEPARENTESISABRE;}
 
 /* Parentesis de cierre */
-( ")" ) {lexeme=yytext(); return Parentesis_c;}
+( ")" ) {lexeme=yytext(); return LLAVEPARENTESISCIERRA;}
 
 /* Llave de apertura */
-( "{" ) {lexeme=yytext(); return Llave_a;}
+( "{" ) {lexeme=yytext(); return LLAVECORCHETEABRE;}
 
 /* Llave de cierre */
-( "}" ) {lexeme=yytext(); return Llave_c;}
+( "}" ) {lexeme=yytext(); return LLAVECORCHETECIERRA;}
 
 /* Corchete de apertura */
-( "[" ) {lexeme = yytext(); return Corchete_a;}
+( "[" ) {lexeme = yytext(); return LLAVECUADRADAABRE;}
 
 /* Corchete de cierre */
-( "]" ) {lexeme = yytext(); return Corchete_c;}
+( "]" ) {lexeme = yytext(); return LLAVECUADRADACIERRA;}
 
 /* Marcador de inicio de algoritmo */
 ( "main" ) {lexeme=yytext(); return Main;}
@@ -99,11 +108,14 @@ espacio=[ ,\t,\r]+
 /* Punto y coma */
 ( ";" ) {lexeme=yytext(); return P_coma;}
 
+/* func */
+( "func" ) {lexeme=yytext(); return FUNC;}
+
 /* Identificador */
-{L}({L}|{D})* {lexeme=yytext(); return Identificador;}
+{L}({L}|{D})* {lexeme=yytext(); return IDENTIFICADOR;}
 
 /* Numero */
-("(-"{D}+")")|{D}+ {lexeme=yytext(); return Numero;}
+("(-"{D}+")")|{D}+ {lexeme=yytext(); return DIGITOS;}
 
 /* Error de analisis */
  . {return ERROR;}

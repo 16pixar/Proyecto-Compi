@@ -10,7 +10,7 @@ import java_cup.runtime.Symbol;
 L=[a-zA-Z_]+
 D=[0-9]+
 cero=0
-espacio=[ ,\t,\r,\n]+
+espacio=[\t,\r,\n]+
 %{
     private Symbol symbol(int type, Object value){
         return new Symbol(type, yyline, yycolumn, value);
@@ -21,14 +21,20 @@ espacio=[ ,\t,\r,\n]+
 %}
 %%
 
+/* Coma */
+( "," ) {return new Symbol(sym.COMA, yychar, yyline, yytext());}
+
 /* Espacios en blanco */
 {espacio} {/*Ignore*/}
 
 /* Comentarios */
 ( "//"(.)* ) {/*Ignore*/}
 
-/* Comillas */
-( "\"" ) {return new Symbol(sym.Comillas, yychar, yyline, yytext());}
+/* ComillasD */
+( "\"" ) {return new Symbol(sym.ComillasD, yychar, yyline, yytext());}
+
+/* ComillasS */
+( "\'" ) {return new Symbol(sym.ComillasS, yychar, yyline, yytext());}
 
 /* Tipos de datos */
 ( byte | char | long | float | double ) {return new Symbol(sym.T_dato, yychar, yyline, yytext());}
@@ -55,7 +61,7 @@ espacio=[ ,\t,\r,\n]+
 ( for ) {return new Symbol(sym.For, yychar, yyline, yytext());}
 
 /* IGUAL */
-( "=" ) {return new Symbol(sym.Igual, yychar, yyline, yytext());}
+( "=" ) {return new Symbol(sym.IGUAL, yychar, yyline, yytext());}
 
 /* Operador Suma */
 ( "+" ) {return new Symbol(sym.Suma, yychar, yyline, yytext());}
@@ -85,22 +91,22 @@ espacio=[ ,\t,\r,\n]+
 ( true | false ) {return new Symbol(sym.Op_booleano, yychar, yyline, yytext());}
 
 /* Parentesis de apertura */
-( "(" ) {return new Symbol(sym.Parentesis_a, yychar, yyline, yytext());}
+( "(" ) {return new Symbol(sym.LLAVEPARENTESISABRE, yychar, yyline, yytext());}
 
 /* Parentesis de cierre */
-( ")" ) {return new Symbol(sym.Parentesis_c, yychar, yyline, yytext());}
+( ")" ) {return new Symbol(sym.LLAVEPARENTESISCIERRA, yychar, yyline, yytext());}
 
 /* Llave de apertura */
-( "{" ) {return new Symbol(sym.Llave_a, yychar, yyline, yytext());}
+( "{" ) {return new Symbol(sym.LLAVECORCHETEABRE, yychar, yyline, yytext());}
 
 /* Llave de cierre */
-( "}" ) {return new Symbol(sym.Llave_c, yychar, yyline, yytext());}
+( "}" ) {return new Symbol(sym.LLAVECORCHETECIERRA, yychar, yyline, yytext());}
 
 /* Corchete de apertura */
-( "[" ) {return new Symbol(sym.Corchete_a, yychar, yyline, yytext());}
+( "[" ) {return new Symbol(sym.LLAVECUADRADAABRE, yychar, yyline, yytext());}
 
 /* Corchete de cierre */
-( "]" ) {return new Symbol(sym.Corchete_c, yychar, yyline, yytext());}
+( "]" ) {return new Symbol(sym.LLAVECUADRADACIERRA, yychar, yyline, yytext());}
 
 /* Marcador de inicio de algoritmo */
 ( "main" ) {return new Symbol(sym.Main, yychar, yyline, yytext());}
@@ -108,11 +114,14 @@ espacio=[ ,\t,\r,\n]+
 /* Punto y coma */
 ( ";" ) {return new Symbol(sym.P_coma, yychar, yyline, yytext());}
 
+/* FUNC */
+( "func" ) {return new Symbol(sym.FUNC, yychar, yyline, yytext());}
+
 /* Identificador */
-{L}({L}|{D})* {return new Symbol(sym.Identificador, yychar, yyline, yytext());}
+{L}({L}|{D})* {return new Symbol(sym.IDENTIFICADOR, yychar, yyline, yytext());}
 
 /* Numero */
-("(-"{D}+")")|{D}+ {return new Symbol(sym.Numero, yychar, yyline, yytext());}
+("(-"{D}+")")|{D}+ {return new Symbol(sym.DIGITOS, yychar, yyline, yytext());}
 
 /* Error de analisis */
  . {return new Symbol(sym.ERROR, yychar, yyline, yytext());}

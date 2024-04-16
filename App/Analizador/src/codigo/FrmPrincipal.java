@@ -1,5 +1,7 @@
 package codigo;
 
+import static codigo.Tokens.COMILLAD;
+import static codigo.Tokens.IDENTIFICADOR;
 import java.awt.Color;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -42,8 +44,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
                     cont++;
                     resultado += "LINEA " + cont + "\n";
                     break;
-                case Comillas:
-                    resultado += "  <Comillas>\t\t" + lexer.lexeme + "\n";
+                case ComillasD:
+                    resultado += "  <ComillasD>\t\t" + lexer.lexeme + "\n";
+                    break;
+                case ComillasS:
+                    resultado += "  <ComillasS>\t\t" + lexer.lexeme + "\n";
                     break;
                 case Cadena:
                     resultado += "  <Tipo de dato>\t" + lexer.lexeme + "\n";
@@ -126,18 +131,15 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 case DIGITOS:
                     resultado += "  <DIGITOS>\t\t" + lexer.lexeme + "\n";
                     break;
-                case CERO;
+                case CERO:
                     resultado += "  <CERO>\n";
                     break;
                 case ERROR:
                     resultado += "  <Simbolo no definido>\n";
                     break;
-                
-                
                 case DIGCONCERO:
                     resultado += "  <DIGCONCERO>\t\t" + lexer.lexeme + "\n";
                     break;
-                
                 case CARACTERESPECIALES:
                     resultado += "  <CARACTERESPECIALES>\t\t" + lexer.lexeme + "\n";
                     break;
@@ -150,14 +152,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 case COMA:
                     resultado += "  <COMA>\t\t" + lexer.lexeme + "\n";
                     break;
-                
                 case SALTOLINEA:
                     resultado += "  <SALTOLINEA>\t\t" + lexer.lexeme + "\n";
-                    break;
-                
-               
-                
-                
+                    break;            
                 case FINALEXPRESION:
                     resultado += "  <FINALEXPRESION>\t\t" + lexer.lexeme + "\n";
                     break;
@@ -206,9 +203,13 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 case COMILLAD:
                     resultado += "  <COMILLAD>\t\t" + lexer.lexeme + "\n";
                     break;
+                case IDENTIFICADOR:
+                    resultado += "  <Identificador>\t\t" + lexer.lexeme + "\n";
+                    break;
                 default:
                     resultado += "  < " + lexer.lexeme + " >\n";
                     break;
+                
             }
         }
     }
