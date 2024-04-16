@@ -10,7 +10,7 @@ import java_cup.runtime.Symbol;
 L=[a-zA-Z_]+
 D=[0-9]+
 cero=0
-espacio=[\t,\r,\n]+
+espacio=[ \t,\r,\n]+
 %{
     private Symbol symbol(int type, Object value){
         return new Symbol(type, yyline, yycolumn, value);
@@ -125,3 +125,5 @@ espacio=[\t,\r,\n]+
 
 /* Error de analisis */
  . {return new Symbol(sym.ERROR, yychar, yyline, yytext());}
+
+

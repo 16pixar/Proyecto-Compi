@@ -6,19 +6,23 @@ import static codigo.Tokens.*;
 L=[a-zA-Z_]+
 D=[0-9]+
 cero=0
-espacio=[\t,\r]+
+espacio=[ \t,\r]+
 %{
     public String lexeme;
 %}
 %%
 
 
+
+
 /* Coma */
 ( "," ) {lexeme=yytext(); return COMA;}
 
-
 /* Espacios en blanco */
 {espacio} {/*Ignore*/}
+
+
+
 
 /* Comentarios */
 ( "//"(.)* ) {/*Ignore*/}
