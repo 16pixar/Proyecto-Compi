@@ -674,7 +674,7 @@ class LexerCup implements java_cup.runtime.Scanner {
           }
         case 39: break;
         case 15: 
-          { return new Symbol(sym.Llave_a, yychar, yyline, yytext());
+          { return new Symbol(sym.LLAVECORCHETEABRE, yychar, yyline, yytext());
           }
         case 40: break;
         case 21: 
@@ -686,11 +686,11 @@ class LexerCup implements java_cup.runtime.Scanner {
           }
         case 42: break;
         case 13: 
-          { return new Symbol(sym.Parentesis_a, yychar, yyline, yytext());
+          { return new Symbol(sym.LLAVEPARENTESISABRE, yychar, yyline, yytext());
           }
         case 43: break;
         case 17: 
-          { return new Symbol(sym.Corchete_a, yychar, yyline, yytext());
+          { return new Symbol(sym.LLAVECUADRADAABRE, yychar, yyline, yytext());
           }
         case 44: break;
         case 9: 
@@ -702,7 +702,7 @@ class LexerCup implements java_cup.runtime.Scanner {
           }
         case 46: break;
         case 16: 
-          { return new Symbol(sym.Llave_c, yychar, yyline, yytext());
+          { return new Symbol(sym.LLAVECORCHETECIERRA, yychar, yyline, yytext());
           }
         case 47: break;
         case 26: 
@@ -726,11 +726,11 @@ class LexerCup implements java_cup.runtime.Scanner {
           }
         case 52: break;
         case 18: 
-          { return new Symbol(sym.Corchete_c, yychar, yyline, yytext());
+          { return new Symbol(sym.LLAVECUADRADACIERRA, yychar, yyline, yytext());
           }
         case 53: break;
         case 3: 
-          { return new Symbol(sym.Numero, yychar, yyline, yytext());
+          { return new Symbol(sym.DIGITOS, yychar, yyline, yytext());
           }
         case 54: break;
         case 28: 
@@ -742,7 +742,7 @@ class LexerCup implements java_cup.runtime.Scanner {
           }
         case 56: break;
         case 2: 
-          { return new Symbol(sym.Identificador, yychar, yyline, yytext());
+          { return new Symbol(sym.LETRA, yychar, yyline, yytext());
           }
         case 57: break;
         case 27: 
@@ -750,7 +750,7 @@ class LexerCup implements java_cup.runtime.Scanner {
           }
         case 58: break;
         case 7: 
-          { return new Symbol(sym.Igual, yychar, yyline, yytext());
+          { return new Symbol(sym.IGUAL, yychar, yyline, yytext());
           }
         case 59: break;
         case 4: 
@@ -762,7 +762,7 @@ class LexerCup implements java_cup.runtime.Scanner {
           }
         case 61: break;
         case 14: 
-          { return new Symbol(sym.Parentesis_c, yychar, yyline, yytext());
+          { return new Symbol(sym.LLAVEPARENTESISCIERRA, yychar, yyline, yytext());
           }
         case 62: break;
         default: 

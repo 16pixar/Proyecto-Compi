@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package codigo;
 
 /**
@@ -19,7 +15,7 @@ public enum Tokens {
     Do,
     While,
     For,
-    Igual,
+    IGUAL,
     Suma,
     Resta,
     Multiplicacion,
@@ -29,15 +25,41 @@ public enum Tokens {
     Op_relacional,
     Op_atribucion,
     Op_booleano,
-    Parentesis_a,
-    Parentesis_c,
-    Llave_a,
-    Llave_c,
-    Corchete_a,
-    Corchete_c,
+    LLAVEPARENTESISABRE,
+    LLAVEPARENTESISCIERRA,
+    LLAVECORCHETEABRE,
+    LLAVECORCHETECIERRA,
+    LLAVECUADRADAABRE,
+    LLAVECUADRADACIERRA,
     Main,
     P_coma,
-    Identificador,
-    Numero,
-    ERROR
+    LETRA,
+    DIGITOS,
+    CERO,
+    ERROR,
+    
+    
+    DIGCONCERO, //[0-9]
+    CARACTERESPECIALES, // [#|"|$|%|&|'|(|)|*|+|,|\|-|.|/|;|<|=|>|?|@|\|[|]|^|`|\|{|}|~]
+    SIGNO, //'-'
+    PUNTO, // '.'
+    COMA, // ','
+    SALTOLINEA,// '\n'
+    FINALEXPRESION, // ;
+    APERTURACIERRECOMENTARIOSIMPLES, // '//'
+    APERTURACOMENTARIOCOMPUESTO, // '/*'
+    CIERRECOMENTARIOCOMPUESTO, // '*/'
+    NULL,
+    FUNC,
+    GLOB,
+    LOC,
+    SEP,
+    INICIOFINBLOQUE,
+    PARAM,
+    NOT,
+    READ,
+    WRITE,
+    COMILLAS,
+    COMILLAD,
+    CHAR
 }

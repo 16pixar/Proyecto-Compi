@@ -9,6 +9,7 @@ import java_cup.runtime.Symbol;
 %char
 L=[a-zA-Z_]+
 D=[0-9]+
+cero=0
 espacio=[ ,\t,\r,\n]+
 %{
     private Symbol symbol(int type, Object value){
@@ -53,7 +54,7 @@ espacio=[ ,\t,\r,\n]+
 /* Palabra reservada For */
 ( for ) {return new Symbol(sym.For, yychar, yyline, yytext());}
 
-/* Operador Igual */
+/* IGUAL */
 ( "=" ) {return new Symbol(sym.Igual, yychar, yyline, yytext());}
 
 /* Operador Suma */

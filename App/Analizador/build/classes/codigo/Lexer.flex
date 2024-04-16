@@ -5,6 +5,7 @@ import static codigo.Tokens.*;
 %type Tokens
 L=[a-zA-Z_]+
 D=[0-9]+
+cero=0
 espacio=[ ,\t,\r]+
 %{
     public String lexeme;
@@ -44,7 +45,7 @@ espacio=[ ,\t,\r]+
 /* Palabra reservada For */
 ( for ) {lexeme=yytext(); return For;}
 
-/* Operador Igual */
+/* IGUAL */
 ( "=" ) {lexeme=yytext(); return Igual;}
 
 /* Operador Suma */

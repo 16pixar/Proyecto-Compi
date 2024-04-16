@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package codigo;
 
 import java.awt.Color;
@@ -71,8 +66,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 case For:
                     resultado += "  <Reservada while>\t" + lexer.lexeme + "\n";
                     break;
-                case Igual:
-                    resultado += "  <Operador igual>\t" + lexer.lexeme + "\n";
+                case IGUAL:
+                    resultado += "  <IGUAL>\t\t" + lexer.lexeme + "\n";
                     break;
                 case Suma:
                     resultado += "  <Operador suma>\t" + lexer.lexeme + "\n";
@@ -101,23 +96,23 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 case Op_booleano:
                     resultado += "  <Operador booleano>\t" + lexer.lexeme + "\n";
                     break;
-                case Parentesis_a:
-                    resultado += "  <Parentesis de apertura>\t" + lexer.lexeme + "\n";
+                case LLAVEPARENTESISABRE:
+                    resultado += "  <LLAVEPARENTESISABRE>\t" + lexer.lexeme + "\n";
                     break;
-                case Parentesis_c:
-                    resultado += "  <Parentesis de cierre>\t" + lexer.lexeme + "\n";
+                case LLAVEPARENTESISCIERRA:
+                    resultado += "  <LLAVEPARENTESISCIERRA>" + lexer.lexeme + "\n";
                     break;
-                case Llave_a:
-                    resultado += "  <Llave de apertura>\t" + lexer.lexeme + "\n";
+                case LLAVECORCHETEABRE:
+                    resultado += "  <LLAVECORCHETEABRE>\t" + lexer.lexeme + "\n";
                     break;
-                case Llave_c:
-                    resultado += "  <Llave de cierre>\t" + lexer.lexeme + "\n";
+                case LLAVECORCHETECIERRA:
+                    resultado += "  <LLAVECORCHETECIERRA>" + lexer.lexeme + "\n";
                     break;
-                case Corchete_a:
-                    resultado += "  <Corchete de apertura>\t" + lexer.lexeme + "\n";
+                case LLAVECUADRADAABRE:
+                    resultado += "  <LLAVECUADRADAABRE>\t" + lexer.lexeme + "\n";
                     break;
-                case Corchete_c:
-                    resultado += "  <Corchete de cierre>\t" + lexer.lexeme + "\n";
+                case LLAVECUADRADACIERRA:
+                    resultado += "  <LLAVECUADRADACIERRA>\t" + lexer.lexeme + "\n";
                     break;
                 case Main:
                     resultado += "  <Reservada main>\t" + lexer.lexeme + "\n";
@@ -125,14 +120,91 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 case P_coma:
                     resultado += "  <Punto y coma>\t" + lexer.lexeme + "\n";
                     break;
-                case Identificador:
-                    resultado += "  <Identificador>\t\t" + lexer.lexeme + "\n";
+                case LETRA:
+                    resultado += "  <LETRA>\t\t" + lexer.lexeme + "\n";
                     break;
-                case Numero:
-                    resultado += "  <Numero>\t\t" + lexer.lexeme + "\n";
+                case DIGITOS:
+                    resultado += "  <DIGITOS>\t\t" + lexer.lexeme + "\n";
+                    break;
+                case CERO;
+                    resultado += "  <CERO>\n";
                     break;
                 case ERROR:
                     resultado += "  <Simbolo no definido>\n";
+                    break;
+                
+                
+                case DIGCONCERO:
+                    resultado += "  <DIGCONCERO>\t\t" + lexer.lexeme + "\n";
+                    break;
+                
+                case CARACTERESPECIALES:
+                    resultado += "  <CARACTERESPECIALES>\t\t" + lexer.lexeme + "\n";
+                    break;
+                case SIGNO:
+                    resultado += "  <SIGNO>\t\t" + lexer.lexeme + "\n";
+                    break;
+                case PUNTO:
+                    resultado += "  <PUNTO>\t\t" + lexer.lexeme + "\n";
+                    break;
+                case COMA:
+                    resultado += "  <COMA>\t\t" + lexer.lexeme + "\n";
+                    break;
+                
+                case SALTOLINEA:
+                    resultado += "  <SALTOLINEA>\t\t" + lexer.lexeme + "\n";
+                    break;
+                
+               
+                
+                
+                case FINALEXPRESION:
+                    resultado += "  <FINALEXPRESION>\t\t" + lexer.lexeme + "\n";
+                    break;
+                case APERTURACIERRECOMENTARIOSIMPLES:
+                    resultado += "  <APERTURACIERRECOMENTARIOSIMPLES>\t\t" + lexer.lexeme + "\n";
+                    break;
+                case APERTURACOMENTARIOCOMPUESTO:
+                    resultado += "  <APERTURACOMENTARIOCOMPUESTO>\t\t" + lexer.lexeme + "\n";
+                    break;
+                case CIERRECOMENTARIOCOMPUESTO:
+                    resultado += "  <CIERRECOMENTARIOCOMPUESTO>\t\t" + lexer.lexeme + "\n";
+                    break;
+                case NULL:
+                    resultado += "  <NULL>\t\t" + lexer.lexeme + "\n";
+                    break;
+                case FUNC:
+                    resultado += "  <FUNC>\t\t" + lexer.lexeme + "\n";
+                    break;
+                case GLOB:
+                    resultado += "  <GLOB>\t\t" + lexer.lexeme + "\n";
+                    break;
+                case LOC:
+                    resultado += "  <LOC>\t\t" + lexer.lexeme + "\n";
+                    break;
+                case SEP:
+                    resultado += "  <SEP>\t\t" + lexer.lexeme + "\n";
+                    break;
+                case INICIOFINBLOQUE:
+                    resultado += "  <INICIOFINBLOQUE>\t\t" + lexer.lexeme + "\n";
+                    break;
+                case PARAM:
+                    resultado += "  <PARAM>\t\t" + lexer.lexeme + "\n";
+                    break;
+                case NOT:
+                    resultado += "  <NOT>\t\t" + lexer.lexeme + "\n";
+                    break;
+                case READ:
+                    resultado += "  <READ>\t\t" + lexer.lexeme + "\n";
+                    break;
+                case WRITE:
+                    resultado += "  <WRITE>\t\t" + lexer.lexeme + "\n";
+                    break;
+                case COMILLAS:
+                    resultado += "  <COMILLAS>\t\t" + lexer.lexeme + "\n";
+                    break;
+                case COMILLAD:
+                    resultado += "  <COMILLAD>\t\t" + lexer.lexeme + "\n";
                     break;
                 default:
                     resultado += "  < " + lexer.lexeme + " >\n";
@@ -141,11 +213,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         }
     }
 
-    /**
-     * This method is called from within the constructor to initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is always
-     * regenerated by the Form Editor.
-     */
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

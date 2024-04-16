@@ -599,7 +599,7 @@ class Lexer {
           }
         case 34: break;
         case 18: 
-          { lexeme = yytext(); return Corchete_a;
+          { lexeme = yytext(); return LLAVECUADRADAABRE;
           }
         case 35: break;
         case 31: 
@@ -611,7 +611,7 @@ class Lexer {
           }
         case 37: break;
         case 16: 
-          { lexeme=yytext(); return Llave_a;
+          { lexeme=yytext(); return LLAVECORCHETEABRE;
           }
         case 38: break;
         case 9: 
@@ -639,15 +639,15 @@ class Lexer {
           }
         case 44: break;
         case 8: 
-          { lexeme=yytext(); return Igual;
+          { lexeme=yytext(); return IGUAL;
           }
         case 45: break;
         case 15: 
-          { lexeme=yytext(); return Parentesis_c;
+          { lexeme=yytext(); return LLAVEPARENTESISCIERRA;
           }
         case 46: break;
         case 3: 
-          { lexeme=yytext(); return Numero;
+          { lexeme=yytext(); return DIGITOS;
           }
         case 47: break;
         case 26: 
@@ -655,7 +655,7 @@ class Lexer {
           }
         case 48: break;
         case 2: 
-          { lexeme=yytext(); return Identificador;
+          { lexeme=yytext(); return LETRA;
           }
         case 49: break;
         case 23: 
@@ -691,15 +691,15 @@ class Lexer {
           }
         case 57: break;
         case 14: 
-          { lexeme=yytext(); return Parentesis_a;
+          { lexeme=yytext(); return LLAVEPARENTESISABRE;
           }
         case 58: break;
         case 19: 
-          { lexeme = yytext(); return Corchete_c;
+          { lexeme = yytext(); return LLAVECUADRADACIERRA;
           }
         case 59: break;
         case 17: 
-          { lexeme=yytext(); return Llave_c;
+          { lexeme=yytext(); return LLAVECORCHETECIERRA;
           }
         case 60: break;
         case 28: 
