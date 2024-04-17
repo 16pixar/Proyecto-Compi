@@ -2,6 +2,8 @@ package codigo;
 
 import static codigo.Tokens.COMILLAD;
 import static codigo.Tokens.IDENTIFICADOR;
+import static codigo.Tokens.Op_binarias;
+import static codigo.Tokens.Op_logico;
 import java.awt.Color;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -74,29 +76,20 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 case IGUAL:
                     resultado += "  <IGUAL>\t\t" + lexer.lexeme + "\n";
                     break;
-                case Suma:
-                    resultado += "  <Operador suma>\t" + lexer.lexeme + "\n";
+                case Op_binarias:
+                    resultado += "  <Operador binario>\t" + lexer.lexeme + "\n";
                     break;
-                case Resta:
-                    resultado += "  <Operador resta>\t" + lexer.lexeme + "\n";
-                    break;
-                case Multiplicacion:
-                    resultado += "  <Operador multiplicacion>\t" + lexer.lexeme + "\n";
-                    break;
-                case Division:
-                    resultado += "  <Operador division>\t" + lexer.lexeme + "\n";
-                    break;
-                case Op_logico:
-                    resultado += "  <Operador logico>\t" + lexer.lexeme + "\n";
-                    break;
-                case Op_incremento:
-                    resultado += "  <Operador incremento>\t" + lexer.lexeme + "\n";
+                case Op_unarias:
+                    resultado += "  <Operador unario>\t" + lexer.lexeme + "\n";
                     break;
                 case Op_relacional:
                     resultado += "  <Operador relacional>\t" + lexer.lexeme + "\n";
                     break;
-                case Op_atribucion:
-                    resultado += "  <Operador atribucion>\t" + lexer.lexeme + "\n";
+                case Op_comparacion:
+                    resultado += "  <Operador comparación>\t" + lexer.lexeme + "\n";
+                    break;
+                case Op_logico:
+                    resultado += "  <Operador logico>\t" + lexer.lexeme + "\n";
                     break;
                 case Op_booleano:
                     resultado += "  <Operador booleano>\t" + lexer.lexeme + "\n";
@@ -209,7 +202,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 default:
                     resultado += "  < " + lexer.lexeme + " >\n";
                     break;
-                
             }
         }
     }

@@ -32,13 +32,13 @@ espacio=[ \t,\r,\n]+
 ( "//"(.)* ) {/*Ignore*/}
 
 /* ComillasD */
-( "\"" ) {return new Symbol(sym.ComillasD, yychar, yyline, yytext());}
+( "\"" ) {return new Symbol(sym.COMILLAD, yychar, yyline, yytext());}
 
 /* ComillasS */
-( "\'" ) {return new Symbol(sym.ComillasS, yychar, yyline, yytext());}
+( "\'" ) {return new Symbol(sym.COMILLAS, yychar, yyline, yytext());}
 
 /* Tipos de datos */
-( byte | char | long | float | double ) {return new Symbol(sym.T_dato, yychar, yyline, yytext());}
+( int | bool | float | char | string | arreglo ) {return new Symbol(sym.T_dato, yychar, yyline, yytext());}
 
 /* Tipo de dato Int (Para el main) */
 ( "int" ) {return new Symbol(sym.Int, yychar, yyline, yytext());}
@@ -81,9 +81,6 @@ espacio=[ \t,\r,\n]+
 
 /*Operadores Relacionales */
 ( ">" | "<" | "==" | "!=" | ">=" | "<=" | "<<" | ">>" ) {return new Symbol(sym.Op_relacional, yychar, yyline, yytext());}
-
-/* Operadores Atribucion */
-( "+=" | "-="  | "*=" | "/=" | "%=" | "=" ) {return new Symbol(sym.Op_atribucion, yychar, yyline, yytext());}
 
 /* Operadores Incremento y decremento */
 ( "++" | "--" ) {return new Symbol(sym.Op_incremento, yychar, yyline, yytext());}

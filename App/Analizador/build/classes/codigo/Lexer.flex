@@ -12,9 +12,6 @@ espacio=[ \t,\r]+
 %}
 %%
 
-
-
-
 /* Coma */
 ( "," ) {lexeme=yytext(); return COMA;}
 
@@ -28,54 +25,52 @@ espacio=[ \t,\r]+
 ( "\n" ) {return Linea;}
 
 /* ComillasD */
-( "\"" ) {lexeme=yytext(); return ComillasD;}
+( "\"" ) {lexeme=yytext(); return COMILLAD;}
 
 /* ComillasS */
-( "\'" ) {lexeme=yytext(); return ComillasS;}
+( "\'" ) {lexeme=yytext(); return COMILLAS;}
 
 /* Final de expresión */
-( ";" ) { return new Symbol(sym.finalExpresion, yychar, yyline, yytext()); }
+( ";" ) { lexeme=yytext(); return FINALEXPRESION; }
 
 /* Apertura de comentario compuesto */
-( "/*" ) { return new Symbol(sym.aperturaComentarioCompuesto, yychar, yyline, yytext()); }
+( "/*" ) {lexeme=yytext(); return APERTURACOMENTARIOCOMPUESTO; }
 
 /* Cierre de comentario compuesto */
-( "*/" ) { return new Symbol(sym.cierreComentarioCompuesto, yychar, yyline, yytext()); }
+( "*/" ) { lexeme=yytext(); return CIERRECOMENTARIOCOMPUESTO;  }
 
 /* Null */
-( "null" ) { return new Symbol(sym.null, yychar, yyline, yytext()); }
+( "null" ) { lexeme=yytext(); return NULL;   }
 
-/* Func */
-( "func" ) { return new Symbol(sym.func, yychar, yyline, yytext()); }
+/* func */
+( "func" ) {lexeme=yytext(); return FUNC;}
 
 /* Glob */
-( "glob" ) { return new Symbol(sym.glob, yychar, yyline, yytext()); }
+( "glob" ) { lexeme=yytext(); return GLOB;}
 
 /* Loc */
-( "loc") { return new Symbol(sym.loc, yychar, yyline, yytext()); }
+("loc") { lexeme=yytext(); return LOC;}
 
 /* Separador */
-( ":" ) { return new Symbol(sym.sep, yychar, yyline, yytext()); }
+( ":" ) { lexeme=yytext(); return SEP;}
 
 /* Inicio o fin de bloque */
-( "_") { return new Symbol(sym.inicioFinDeBloque, yychar, yyline, yytext()); }
+( "_") { lexeme=yytext(); return INICIOFINBLOQUE; }
 
 /* Parámetro */
-( "param" ) { return new Symbol(sym.param, yychar, yyline, yytext()); }
+( "param" ) { lexeme=yytext(); return PARAM; }
 
 /* Not */
-( "not" ) { return new Symbol(sym.not, yychar, yyline, yytext()); }
+( "not" ) { lexeme=yytext(); return NOT; }
 
 /* Read */
-( "read" ) { return new Symbol(sym.read, yychar, yyline, yytext()); }
+( "read" ) { lexeme=yytext(); return READ; }
 
 /* Write */
-( "write") { return new Symbol(sym.write, yychar, yyline, yytext()); }
-
-
+( "write") { lexeme=yytext(); return WRITE; }
 
 /* Tipos de datos */
-( byte | int | char | long | float | double ) {lexeme=yytext(); return T_dato;}
+( int | bool | float | char | string | arreglo ) {lexeme=yytext(); return T_dato;}
 
 /* Tipo de dato String */
 ( String ) {lexeme=yytext(); return Cadena;}
@@ -98,32 +93,23 @@ espacio=[ \t,\r]+
 /* IGUAL */
 ( "=" ) {lexeme=yytext(); return IGUAL;}
 
-/* Operador Suma */
-( "+" ) {lexeme=yytext(); return Suma;}
+/*Operadores Binarias */
+( "+"|"-"|"/"|"*"|"%"|"^" ) {lexeme = yytext(); return Op_binarias;}
 
-/* Operador Resta */
-( "-" ) {lexeme=yytext(); return Resta;}
-
-/* Operador Multiplicacion */
-( "*" ) {lexeme=yytext(); return Multiplicacion;}
-
-/* Operador Division */
-( "/" ) {lexeme=yytext(); return Division;}
-
-/* Operadores logicos */
-( "&&" | "||" | "!" | "&" | "|" ) {lexeme=yytext(); return Op_logico;}
+/* Operadores Unarias */
+( "++" | "--" ) {lexeme = yytext(); return Op_unarias;}
 
 /*Operadores Relacionales */
-( ">" | "<" | "==" | "!=" | ">=" | "<=" | "<<" | ">>" ) {lexeme = yytext(); return Op_relacional;}
+( ">" | "<" | ">=" | "<=" ) {lexeme = yytext(); return Op_relacional;}
 
-/* Operadores Atribucion */
-( "+=" | "-="  | "*=" | "/=" | "%=" ) {lexeme = yytext(); return Op_atribucion;}
+/*Operadores Comparación */
+( "=="|"!=" ) {lexeme = yytext(); return Op_comparacion;}
 
-/* Operadores Incremento y decremento */
-( "++" | "--" ) {lexeme = yytext(); return Op_incremento;}
+/* Operadores logicos */
+( "&" | "|") {lexeme=yytext(); return Op_logico;}
 
-/*Operadores Booleanos*/
-(true | false)      {lexeme = yytext(); return Op_booleano;}
+/*Operadores Booleanos*/    
+(true | false) {lexeme = yytext(); return Op_booleano;}
 
 /* Parentesis de apertura */
 ( "(" ) {lexeme=yytext(); return LLAVEPARENTESISABRE;}
@@ -148,9 +134,6 @@ espacio=[ \t,\r]+
 
 /* Punto y coma */
 ( ";" ) {lexeme=yytext(); return P_coma;}
-
-/* func */
-( "func" ) {lexeme=yytext(); return FUNC;}
 
 /* Identificador */
 {L}({L}|{D})* {lexeme=yytext(); return IDENTIFICADOR;}
