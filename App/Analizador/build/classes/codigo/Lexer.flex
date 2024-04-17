@@ -15,10 +15,17 @@ espacio=[ \t,\r]+
 /* Coma */
 ( "," ) {lexeme=yytext(); return COMA;}
 
-
-
 /* Espacios en blanco */
 {espacio} {/*Ignore*/}
+
+/* In */
+( "In" ) {lexeme=yytext(); return IN;}
+
+/* Float */
+( "float" ) {lexeme=yytext(); return FLOAT;}
+
+/* Apertura Cierre Comentario Simple */
+( "//" ) {lexeme=yytext(); return APERTURACIERRECOMENTARIOSIMPLE;}
 
 /* Comentarios */
 ( "//"(.)* ) {/*Ignore*/}
@@ -70,9 +77,6 @@ espacio=[ \t,\r]+
 
 /* Write */
 ( "write") { lexeme=yytext(); return WRITE; }
-
-/* Tipos de datos */
-( int | bool | float | char | string | arreglo ) {lexeme=yytext(); return T_dato;}
 
 /* Tipo de dato String */
 ( String ) {lexeme=yytext(); return Cadena;}
@@ -143,20 +147,22 @@ espacio=[ \t,\r]+
 /* Numero */
 ("(-"{D}+")")|{D}+ {lexeme=yytext(); return DIGITOS;}
 
-/* Tipos de Datos */
-( "bool" ) {lexeme = yytext(); return BOOL;}
+/* INT */
+( "int" ) {lexeme = yytext(); return INT;}
 
 /* CHAR */
 ( "char" ) {lexeme = yytext(); return CHAR;}
-
-/* INT */
-( "int" ) {lexeme = yytext(); return INT;}
 
 /* ARREGLO */
 ( "arreglo" ) {lexeme = yytext(); return ARREGLO;}
 
 /* Punto */
 ( "." ) {lexeme = yytext(); return PUNTO;}
+
+/* Solicitud Faltantes Terminales */
+
+/* Funcion */
+( "func" ) {lexeme = yytext(); return FUNC;}
 
 /* Error de analisis */
  . {return ERROR;}

@@ -7,6 +7,8 @@ package codigo;
  */
 public enum Tokens {
     Linea,
+    INT,
+    In,
     ComillasD,
     ComillasS,
     T_dato,
@@ -42,7 +44,7 @@ public enum Tokens {
     COMA, // ','
     SALTOLINEA,// '\n'
     FINALEXPRESION, // ;
-    APERTURACIERRECOMENTARIOSIMPLES, // '//'
+    APERTURACIERRECOMENTARIOSIMPLE, // '//' Probando
     APERTURACOMENTARIOCOMPUESTO, // '/*'
     CIERRECOMENTARIOCOMPUESTO, // '*/'
     NULL,

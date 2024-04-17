@@ -28,6 +28,14 @@ espacio=[ \t,\r,\n]+
 /* Espacios en blanco */
 {espacio} {/*Ignore*/}
 
+/* In */
+( "In" ) {return new Symbol(sym.In, yychar, yyline, yytext());}
+
+/* Float */
+( "float" ) {return new Symbol(sym.FLOAT, yychar, yyline, yytext());}
+
+/* Apertura Cierre Comentario Simple */
+( "//" ) {return new Symbol(sym.APERTURACIERRECOMENTARIOSIMPLE, yychar, yyline, yytext());}
 
 /* Comentarios */
 ( "//"(.)* ) {/*Ignore*/}
@@ -38,11 +46,8 @@ espacio=[ \t,\r,\n]+
 /* ComillasS */
 ( "\'" ) {return new Symbol(sym.COMILLAS, yychar, yyline, yytext());}
 
-/* Tipos de datos */
-( int | bool | float | char | string | arreglo ) {return new Symbol(sym.T_dato, yychar, yyline, yytext());}
-
-/* Tipo de dato Int (Para el main) */
-( "int" ) {return new Symbol(sym.Int, yychar, yyline, yytext());}
+/* INT */
+( "int" ) {return new Symbol(sym.INT, yychar, yyline, yytext());}
 
 /* Tipo de dato String */
 ( String ) {return new Symbol(sym.Cadena, yychar, yyline, yytext());}
@@ -125,7 +130,6 @@ espacio=[ \t,\r,\n]+
 /*Operadores Comparación */
 ( "=="|"!=" ) {return new Symbol(sym.Op_Comparacion, yychar, yyline, yytext());}
 
-
 /* Salto de linea */
 ( "\n" ) {return new Symbol(sym.LINEA, yychar, yyline, yytext());}
 
@@ -164,18 +168,6 @@ espacio=[ \t,\r,\n]+
 
 /* Write */
 ( "write" ) {return new Symbol(sym.WRITE, yychar, yyline, yytext()); }
-
-/* Tipos de Datos */
-( "bool" ) {return new Symbol(sym.BOOL, yychar, yyline, yytext()); }
-
-/* CHAR */
-( "char" ) {return new Symbol(sym.CHAR, yychar, yyline, yytext()); }
-
-/* INT */
-( "int" ) {return new Symbol(sym.INT, yychar, yyline, yytext()); }
-
-/* ARREGLO */
-( "arreglo" ) {return new Symbol(sym.ARREGLO, yychar, yyline, yytext()); }
 
 /* Punto */
 ( "." ) {return new Symbol(sym.PUNTO, yychar, yyline, yytext());}

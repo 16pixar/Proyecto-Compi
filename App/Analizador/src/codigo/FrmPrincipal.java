@@ -46,6 +46,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
                     cont++;
                     resultado += "LINEA " + cont + "\n";
                     break;
+                case INT:
+                    resultado += "  <INT>\t\t" + lexer.lexeme + "\n";
+                    break;
                 case ComillasD:
                     resultado += "  <ComillasD>\t\t" + lexer.lexeme + "\n";
                     break;
@@ -151,9 +154,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 case FINALEXPRESION:
                     resultado += "  <FINALEXPRESION>\t\t" + lexer.lexeme + "\n";
                     break;
-                case APERTURACIERRECOMENTARIOSIMPLES:
-                    resultado += "  <APERTURACIERRECOMENTARIOSIMPLES>\t\t" + lexer.lexeme + "\n";
-                    break;
+               
                 case APERTURACOMENTARIOCOMPUESTO:
                     resultado += "  <APERTURACOMENTARIOCOMPUESTO>\t\t" + lexer.lexeme + "\n";
                     break;
@@ -199,6 +200,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 case IDENTIFICADOR:
                     resultado += "  <Identificador>\t\t" + lexer.lexeme + "\n";
                     break;
+           
+                
                 default:
                     resultado += "  < " + lexer.lexeme + " >\n";
                     break;
