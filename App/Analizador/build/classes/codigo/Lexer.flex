@@ -5,7 +5,7 @@ import static codigo.Tokens.*;
 %type Tokens
 L=[a-zA-Z_]+
 D=[0-9]+
-cero=0
+
 espacio=[ \t,\r]+
 %{
     public String lexeme;
@@ -14,6 +14,8 @@ espacio=[ \t,\r]+
 
 /* Coma */
 ( "," ) {lexeme=yytext(); return COMA;}
+
+
 
 /* Espacios en blanco */
 {espacio} {/*Ignore*/}
@@ -140,6 +142,21 @@ espacio=[ \t,\r]+
 
 /* Numero */
 ("(-"{D}+")")|{D}+ {lexeme=yytext(); return DIGITOS;}
+
+/* Tipos de Datos */
+( "bool" ) {lexeme = yytext(); return BOOL;}
+
+/* CHAR */
+( "char" ) {lexeme = yytext(); return CHAR;}
+
+/* INT */
+( "int" ) {lexeme = yytext(); return INT;}
+
+/* ARREGLO */
+( "arreglo" ) {lexeme = yytext(); return ARREGLO;}
+
+/* Punto */
+( "." ) {lexeme = yytext(); return PUNTO;}
 
 /* Error de analisis */
  . {return ERROR;}

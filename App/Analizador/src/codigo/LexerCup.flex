@@ -28,6 +28,7 @@ espacio=[ \t,\r,\n]+
 /* Espacios en blanco */
 {espacio} {/*Ignore*/}
 
+
 /* Comentarios */
 ( "//"(.)* ) {/*Ignore*/}
 
@@ -120,6 +121,64 @@ espacio=[ \t,\r,\n]+
 
 /* Numero */
 ("(-"{D}+")")|{D}+ {return new Symbol(sym.DIGITOS, yychar, yyline, yytext());}
+
+/*Operadores Comparación */
+( "=="|"!=" ) {return new Symbol(sym.Op_Comparacion, yychar, yyline, yytext());}
+
+
+/* Salto de linea */
+( "\n" ) {return new Symbol(sym.LINEA, yychar, yyline, yytext());}
+
+/* Final de Expresion */
+( ";" ) {return new Symbol(sym.FINALEXPRESION, yychar, yyline, yytext());}
+
+/* Apertura de comentario compuesto */
+( "/*" ) {return new Symbol(sym.APERTURACOMENTARIOCOMPUESTO, yychar, yyline, yytext());}
+
+/* Cierre de comentario Compuesto */
+( "*/" ) {return new Symbol(sym.CIERRECOMENTARIOCOMPUESTO, yychar, yyline, yytext()); }
+
+/* NULL */
+( "null" ) {return new Symbol(sym.NULL, yychar, yyline, yytext()); }
+
+/* Glob */
+( "glob" ) {return new Symbol(sym.GLOB, yychar, yyline, yytext()); }
+
+/* Loc*/
+( "loc" ) {return new Symbol(sym.LOC, yychar, yyline, yytext()); }
+
+/* Separador */
+( ":" ) {return new Symbol(sym.SEP, yychar, yyline, yytext()); }
+
+/* Inicio o fin de bloque */
+( "_" ) {return new Symbol(sym.INICIOFINBLOQUE, yychar, yyline, yytext()); }
+
+/* Parametro */
+( "param" ) {return new Symbol(sym.PARAM, yychar, yyline, yytext()); }
+
+/* Not */
+( "not" ) {return new Symbol(sym.NOT, yychar, yyline, yytext()); }
+
+/* Read */
+( "read" ) {return new Symbol(sym.READ, yychar, yyline, yytext()); }
+
+/* Write */
+( "write" ) {return new Symbol(sym.WRITE, yychar, yyline, yytext()); }
+
+/* Tipos de Datos */
+( "bool" ) {return new Symbol(sym.BOOL, yychar, yyline, yytext()); }
+
+/* CHAR */
+( "char" ) {return new Symbol(sym.CHAR, yychar, yyline, yytext()); }
+
+/* INT */
+( "int" ) {return new Symbol(sym.INT, yychar, yyline, yytext()); }
+
+/* ARREGLO */
+( "arreglo" ) {return new Symbol(sym.ARREGLO, yychar, yyline, yytext()); }
+
+/* Punto */
+( "." ) {return new Symbol(sym.PUNTO, yychar, yyline, yytext());}
 
 /* Error de analisis */
  . {return new Symbol(sym.ERROR, yychar, yyline, yytext());}
