@@ -10,6 +10,7 @@ import java_cup.runtime.Symbol;
 L=[a-zA-Z_]+
 D=[0-9]+
 cero=0
+digConCero=[0-9]
 espacio=[ \t,\r,\n]+
 %{
     private Symbol symbol(int type, Object value){
@@ -29,6 +30,68 @@ espacio=[ \t,\r,\n]+
 
 /* Comentarios */
 ( "//"(.)* ) {/*Ignore*/}
+
+/* Caracteres Especiales */
+"#"|"("|")"|","|"."|"/"|";"|"?"|"@"|"\\"|"\["|"\]"|"`"|"\{"|"\}"|"~" { return new Symbol(sym.SPECIAL_CHAR, yychar, yyline, yytext()); }
+
+/* Signo */
+( "-"){ return new Symbol(sym.Signo, yychar, yyline, yytext()); }
+
+/* punto */
+( "." ){ return new Symbol(sym.Punto, yychar, yyline, yytext()); }
+
+/* Coma */
+( "coma" ){ return new Symbol(sym.Coma, yychar, yyline, yytext()); }
+
+/ *Salto de Linea* /
+( "\n" ) { return new Symbol(sym.SaltoLinea, yychar, yyline, yytext()); }
+
+
+
+/* Final de expresión */
+( ";" ) { return new Symbol(sym.finalExpresion, yychar, yyline, yytext()); }
+
+/* Apertura de comentario simple */
+( "//" ){ return new Symbol(sym.aperturaCierreComentarioSimple, yychar, yyline, yytext()); }
+
+/* Apertura de comentario compuesto */
+( "/*" ) { return new Symbol(sym.aperturaComentarioCompuesto, yychar, yyline, yytext()); }
+
+/* Cierre de comentario compuesto */
+( "*/" ) { return new Symbol(sym.cierreComentarioCompuesto, yychar, yyline, yytext()); }
+
+/* Null */
+( "null" ) { return new Symbol(sym.null, yychar, yyline, yytext()); }
+
+/* Func */
+( "func" ) { return new Symbol(sym.func, yychar, yyline, yytext()); }
+
+/* Glob */
+( "glob" ) { return new Symbol(sym.glob, yychar, yyline, yytext()); }
+
+/* Loc */
+( "loc") { return new Symbol(sym.loc, yychar, yyline, yytext()); }
+
+/* Separador */
+( ":" ) { return new Symbol(sym.sep, yychar, yyline, yytext()); }
+
+/* Inicio o fin de bloque */
+( "_") { return new Symbol(sym.inicioFinDeBloque, yychar, yyline, yytext()); }
+
+/* Parámetro */
+( "param" ) { return new Symbol(sym.param, yychar, yyline, yytext()); }
+
+/* Not */
+( "not" ) { return new Symbol(sym.not, yychar, yyline, yytext()); }
+
+/* Read */
+( "read" ) { return new Symbol(sym.read, yychar, yyline, yytext()); }
+
+/* Write */
+( "write") { return new Symbol(sym.write, yychar, yyline, yytext()); }
+
+
+
 
 /* ComillasD */
 ( "\"" ) {return new Symbol(sym.ComillasD, yychar, yyline, yytext());}
@@ -102,10 +165,10 @@ espacio=[ \t,\r,\n]+
 /* Llave de cierre */
 ( "}" ) {return new Symbol(sym.LLAVECORCHETECIERRA, yychar, yyline, yytext());}
 
-/* Corchete de apertura */
+/* Cuadrada de apertura */
 ( "[" ) {return new Symbol(sym.LLAVECUADRADAABRE, yychar, yyline, yytext());}
 
-/* Corchete de cierre */
+/* Cuadrada de cierre */
 ( "]" ) {return new Symbol(sym.LLAVECUADRADACIERRA, yychar, yyline, yytext());}
 
 /* Marcador de inicio de algoritmo */
