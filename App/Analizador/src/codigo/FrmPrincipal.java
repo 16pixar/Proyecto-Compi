@@ -200,8 +200,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 case INT:
                     resultado += "  <INT>\t\t\t" + lexer.lexeme + "\n";
                     break;
+                case Do:
+                    resultado += "  <Do>\t\t\t" + lexer.lexeme + "\n";
+                    break;
                 case APERTURACIERRECOMENTARIOSIMPLE:
-                    resultado += "  <ACCOMENTARIOS>\t\t\t" + lexer.lexeme + "\n";
+                    resultado += "  <APERTURACIERRECOMENTARIOSIMPLE>\t\t\t" + lexer.lexeme + "\n";
                     break;
                 case CHAR:
                     resultado += "  <CHAR>\t\t\t" + lexer.lexeme + "\n";

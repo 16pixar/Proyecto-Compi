@@ -113,8 +113,6 @@ espacio=[ \t,\r]+
 /* Separador */
 ( ":" ) { lexeme=yytext(); return SEP;}
 
-
-
 /* Parámetro */
 ( "param" ) { lexeme=yytext(); return PARAM; }
 
@@ -145,6 +143,12 @@ espacio=[ \t,\r]+
 /* IGUAL */
 ( "=" ) {lexeme=yytext(); return IGUAL;}
 
+/* Palabra reservada Do */
+( do ) {lexeme = yytext(); return Do;}
+
+/*Operadores Comparación */
+( "=="|"!=" ) {lexeme = yytext(); return Op_comparacion;}
+
 /*Operadores Binarias */
 ( "+"|"-"|"/"|"*"|"%"|"^" ) {lexeme = yytext(); return Op_binarias;}
 
@@ -153,9 +157,6 @@ espacio=[ \t,\r]+
 
 /*Operadores Relacionales */
 ( ">" | "<" | ">=" | "<=" ) {lexeme = yytext(); return Op_relacional;}
-
-/*Operadores Comparación */
-( "=="|"!=" ) {lexeme = yytext(); return Op_comparacion;}
 
 /* Operadores logicos */
 ( "&" | "|") {lexeme=yytext(); return Op_logico;}

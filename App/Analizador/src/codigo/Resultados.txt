@@ -84,10 +84,10 @@ LINEA 1				SIMBOLO			ID
   <Identificador>		boolean			32
   <Identificador>		bandera			32
   <IGUAL>			=			14
-  <Operador booleano>		true			-1
+  <Operador booleano>		true			23
   <FINALEXPRESION>		;			0
   <SALTOLINEA>			salto			2
-  <Reservada while>		while			-1
+  <Reservada while>		while			10
   <LLAVEPARENTESISABRE>		(			24
   <LLAVEPARENTESISABRE>		(			24
   <Identificador>		linea			32
@@ -106,6 +106,8 @@ LINEA 1				SIMBOLO			ID
   <Reservada if>		if			-1
   <LLAVEPARENTESISABRE>		(			24
   <Identificador>		bandera			32
+  <Operador comparación>		==			-1
+  <Operador booleano>		true			23
   <LLAVEPARENTESISCIERRA>	)			25
   <LLAVECORCHETEABRE>		{			26
   <SALTOLINEA>			salto			2
@@ -120,28 +122,10 @@ LINEA 1				SIMBOLO			ID
   <COMILLAD>			"			12
   <FINALEXPRESION>		;			0
   <SALTOLINEA>			salto			2
-  <Identificador>		bandera			32
-  <IGUAL>			=			14
-  <Operador booleano>		false			-1
-  <FINALEXPRESION>		;			0
-  <SALTOLINEA>			salto			2
-  <SALTOLINEA>			salto			2
   <LLAVECORCHETECIERRA>		}			27
   <SALTOLINEA>			salto			2
   <Reservada else>		else			-1
   <LLAVECORCHETEABRE>		{			26
-  <SALTOLINEA>			salto			2
-  <Identificador>		System			32
-  <PUNTO>			.			38
-  <Identificador>		out			32
-  <PUNTO>			.			38
-  <Identificador>		println			32
-  <LLAVEPARENTESISABRE>		(			24
-  <COMILLAD>			"			12
-  <Identificador>		entro			32
-  <COMILLAD>			"			12
-  <LLAVEPARENTESISCIERRA>	)			25
-  <FINALEXPRESION>		;			0
   <SALTOLINEA>			salto			2
   <SALTOLINEA>			salto			2
   <Identificador>		String			32
@@ -171,23 +155,6 @@ LINEA 1				SIMBOLO			ID
   <DIGITOS>			0			33
   <LLAVEPARENTESISCIERRA>	)			25
   <LLAVECORCHETEABRE>		{			26
-  <SALTOLINEA>			salto			2
-  <Identificador>		System			32
-  <PUNTO>			.			38
-  <Identificador>		out			32
-  <PUNTO>			.			38
-  <Identificador>		println			32
-  <LLAVEPARENTESISABRE>		(			24
-  <COMILLAD>			"			12
-  <Identificador>		sa			32
-  <COMILLAD>			"			12
-  <Operador binario>		+			-1
-  <Identificador>		elementos			32
-  <LLAVECUADRADAABRE>		[			28
-  <DIGITOS>			0			33
-  <LLAVECUADRADACIERRA>		]			29
-  <LLAVEPARENTESISCIERRA>	)			25
-  <FINALEXPRESION>		;			0
   <SALTOLINEA>			salto			2
   <Identificador>		String			32
   <Identificador>		primerElemento			32
@@ -223,10 +190,6 @@ LINEA 1				SIMBOLO			ID
   <COMILLAD>			"			12
   <Simbolo no definido>						-1
   <LETRA>			t			32
-  <Simbolo no definido>						-1
-  <LETRA>			t			32
-  <Simbolo no definido>						-1
-  <LETRA>			t			32
   <COMILLAD>			"			12
   <Operador binario>		+			-1
   <Identificador>		Colocare			32
@@ -234,17 +197,15 @@ LINEA 1				SIMBOLO			ID
   <SALTOLINEA>			salto			2
   <SALTOLINEA>			salto			2
   <SALTOLINEA>			salto			2
-  <Identificador>		contenido			32
-  <Operador binario>		+			-1
-  <IGUAL>			=			14
+  <Identificador>		System			32
+  <PUNTO>			.			38
+  <Identificador>		out			32
+  <PUNTO>			.			38
+  <Identificador>		println			32
+  <LLAVEPARENTESISABRE>		(			24
   <Identificador>		lineaConToken			32
-  <Operador binario>		+			-1
-  <COMILLAD>			"			12
-  <Simbolo no definido>						-1
-  <LETRA>			n			32
-  <COMILLAD>			"			12
+  <LLAVEPARENTESISCIERRA>	)			25
   <FINALEXPRESION>		;			0
-  <SALTOLINEA>			salto			2
   <SALTOLINEA>			salto			2
   <LLAVECORCHETECIERRA>		}			27
   <SALTOLINEA>			salto			2
