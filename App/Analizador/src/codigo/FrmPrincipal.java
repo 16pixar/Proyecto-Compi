@@ -174,7 +174,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                     resultado += "  <COMA>\t\t" + lexer.lexeme + "\n";
                     break;
                 case SALTOLINEA:
-                    resultado += "  <SALTOLINEA>\t\t" + lexer.lexeme + "\n";
+                    resultado += "  <SALTOLINEA>\t" + "salto" + "\n";
                     break;            
                 case APERTURACOMENTARIOCOMPUESTO:
                     resultado += "  <APERTURACOMENTARIOCOMPUESTO>\t\t" + lexer.lexeme + "\n";
@@ -198,7 +198,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                     resultado += "  <SEP>\t\t" + lexer.lexeme + "\n";
                     break;
                 case INICIOFINBLOQUE:
-                    resultado += "  <INICIOFINBLOQUE>\t\t" + lexer.lexeme + "\n";
+                    resultado += "  <INICIOFINBLOQUE>\t" + lexer.lexeme + "\n";
                     break;
                 case PARAM:
                     resultado += "  <PARAM>\t\t" + lexer.lexeme + "\n";

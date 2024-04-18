@@ -16,6 +16,9 @@ espacio=[ \t,\r]+
 /* Coma */
 ( "," ) {lexeme=yytext(); return COMA;}
 
+/* Inicio o fin de bloque */
+( "_") { lexeme=yytext(); return INICIOFINBLOQUE; }
+
 /* CHAR */
 {Le}{1,1} {lexeme=yytext(); return LETRA;}
 
@@ -114,8 +117,7 @@ espacio=[ \t,\r]+
 /* Separador */
 ( ":" ) { lexeme=yytext(); return SEP;}
 
-/* Inicio o fin de bloque */
-( "_") { lexeme=yytext(); return INICIOFINBLOQUE; }
+
 
 /* Parámetro */
 ( "param" ) { lexeme=yytext(); return PARAM; }
