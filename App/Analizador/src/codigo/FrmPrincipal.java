@@ -9,8 +9,12 @@ import static codigo.Tokens.Op_binarias;
 import static codigo.Tokens.Op_logico;
 import static codigo.Tokens.RANGE;
 import java.awt.Color;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.StringReader;
 import java.nio.file.Files;
@@ -32,6 +36,58 @@ public class FrmPrincipal extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
     }
+    public static int buscarVariable(String variableABuscar) {
+        switch (variableABuscar) {
+            case "<DIGITOS>": return 33;
+            case "<Op_relacional>": return 20;
+            case "<SEP>": return 39;
+            case "<LLAVEPARENTESISCIERRA>": return 25;
+            case "<Operador booleano>": return 23;
+            case "<APERTURACIERRECOMENTARIOSIMPLE>": return 43;
+            case "<If>": return 7;
+            case "<T_dato>": return 4;
+            case "<INT>": return 40;
+            case "<Else>": return 8;
+            case "<Identificador>": return 32;
+            case "<IGUAL>": return 14;
+            case "<IN>": return 41;
+            case "<CIERRECOMENTARIOCOMPUESTO>": return 37;
+            case "<Reservada while>": return 10;
+            case "<Division>": return 18;
+            case "<Int>": return 5;
+            case "<Cadena>": return 6;
+            case "<For>": return 11;
+            case "<FINALEXPRESION>": return 0;
+            case "<P_coma>": return 31;
+            case "<COMILLAS>": return 3;
+            case "<error>": return 1;
+            case "<COMA>": return 35;
+            case "<LETRA>": return 32;
+            case "<LLAVEPARENTESISABRE>": return 24;
+            case "<SALTOLINEA>": return 2;
+            case "<LLAVECUADRADACIERRA>": return 29;
+            case "<Operador Binario>": return 21; // FALTA, AGREGUELO PORFA AL FLEXCUP PRIMERO
+            case "<Op_atribucion>": return 21;
+            case "<Do>": return 9;
+            case "<ERROR>": return 34;
+            case "<Op_logico>": return 19;
+            case "<COMILLAD>": return 12;
+            case "<PUNTO>": return 38;
+            case "<FUNC>": return 13;
+            case "<LLAVECORCHETEABRE>": return 26;
+            case "<FLOAT>": return 42;
+            case "<APERTURACOMENTARIOCOMPUESTO>": return 36;
+            case "<Resta>": return 16;
+            case "<Multiplicacion>": return 17;
+            case "<LLAVECUADRADAABRE>": return 28;
+            case "<Op_incremento>": return 22;
+            case "<Suma>": return 15;
+            case "<Main>": return 30;
+            case "<LLAVECORCHETECIERRA>": return 27;
+            default: return -1; // Si no se encuentra la variable, se retorna -1
+        }
+    }
+ 
     
     private void analizarLexico() throws IOException{
         int cont = 1;
@@ -39,10 +95,101 @@ public class FrmPrincipal extends javax.swing.JFrame {
         String expr = (String) txtResultado.getText();
         Lexer lexer = new Lexer(new StringReader(expr));
         String resultado = "LINEA " + cont + "\t\t\tSIMBOLO\n";
+        String ruta = System.getProperty("user.dir") + "\\src\\codigo\\Resultados.txt";
         while (true) {
             Tokens token = lexer.yylex();
             if (token == null) {
                 txtAnalizarLex.setText(resultado);
+                System.out.println(resultado);
+                
+                try {
+                    //Creacion de directorio para los resultados 
+                    File archivo;
+                    
+                    archivo = new File (ruta);
+                    if(archivo.createNewFile()){
+                        System.out.println("Se creo el archivo");
+                    }
+                    // Escritura del archivo 
+                    try {
+                        FileWriter escritor = new FileWriter(ruta);
+                        BufferedWriter bufferedWriter = new BufferedWriter(escritor);
+                        bufferedWriter.write(resultado);
+                        bufferedWriter.close();
+                        System.out.println("Se ha escrito el texto en el archivo correctamente.");
+                        try {
+                            // Leer el archivo original
+                            FileReader fr = new FileReader(ruta);
+                            BufferedReader br = new BufferedReader(fr);
+                            String contenido = "";
+                            String linea;
+                            String primeraLinea = br.readLine();
+                            
+                            // Leer la primera línea y omitirla
+                            //linea = br.readLine();
+                   
+                            
+                            // Leer y agregar el resto del contenido del archivo
+                            boolean bandera = true;
+                            contenido += "LINEA 1\t\t\t\tSIMBOLO\t\t\tID\n";
+                            while ((linea = br.readLine()) != null) {
+
+                                    // Dividir la línea en elementos separados por tabulaciones
+                                    String[] elementos = linea.split("\t");
+
+                                    // Verificar el primer elemento de la línea
+                                    System.out.println("su largo es"+elementos.length);
+                                    if (elementos.length > 0) {
+                                        System.out.println("es mayor a 0");
+                                        String primerElemento = elementos[0].trim();
+
+                                        // Buscar el valor correspondiente al primer elemento
+                                        int Colocare = buscarVariable(primerElemento);
+                                        
+                                        
+                                        // Agregar el token al final de la línea
+                                        String lineaConToken = linea + "\t\t\t" + Colocare;
+
+                                        // Agregar la línea modificada al contenido
+                                        contenido += lineaConToken + "\n";
+                                        System.out.println("se va agregar" + contenido);
+
+                                    
+                                   
+                                }
+                            }
+                            
+                           
+                         
+                              
+                            br.close();
+                            
+                            // Escribir el archivo con la primera línea modificada
+                            FileWriter fw = new FileWriter(ruta);
+                            BufferedWriter bw = new BufferedWriter(fw);
+                            bw.write(contenido);
+                            bw.close();
+
+                            System.out.println("Se ha modificado la primera línea del archivo correctamente.");
+
+                            } catch (IOException e) {
+                                System.out.println("Ha ocurrido un error al modificar la primera línea del archivo.");
+                                e.printStackTrace();
+                            }
+
+
+                        
+                    } 
+  
+                    catch (IOException e) {
+                        System.out.println("Ha ocurrido un error al escribir en el archivo.");
+                        e.printStackTrace();
+                    }
+                } catch(IOException e) {
+                    System.out.println("No se a podido crear el archivo");               
+                }
+               
+   
                 return;
             }
             switch (token) {
@@ -174,7 +321,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                     resultado += "  <COMA>\t\t\t" + lexer.lexeme + "\n";
                     break;
                 case SALTOLINEA:
-                    resultado += "  <SALTOLINEA>\t\t" + "salto" + "\n";
+                    resultado += "  <SALTOLINEA>\t\t\t" + "salto" + "\n";
                     break;            
                 case APERTURACOMENTARIOCOMPUESTO:
                     resultado += "  <APERTURACOMENTARIOCOMPUESTO>\t" + lexer.lexeme + "\n";
@@ -231,7 +378,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                     resultado += "  < " + lexer.lexeme + " >\n";
                     break;
             }
-        }
+        }    
     }
 
 
@@ -247,6 +394,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         txtAnalizarLex = new javax.swing.JTextArea();
         btnAnalizarLex = new javax.swing.JButton();
         btnLimpiarLex = new javax.swing.JButton();
+        btnImprimir = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         txtAnalizarSin = new javax.swing.JTextArea();
@@ -290,6 +438,15 @@ public class FrmPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnImprimir.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnImprimir.setText("Imprimir");
+        btnImprimir.setActionCommand("Imprimir");
+        btnImprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImprimirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -299,10 +456,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 .addComponent(btnArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(325, Short.MAX_VALUE)
+                .addContainerGap(319, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnAnalizarLex, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnLimpiarLex, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnImprimir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnLimpiarLex, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnAnalizarLex, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -321,7 +479,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
                         .addGap(74, 74, 74)
                         .addComponent(btnAnalizarLex)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnLimpiarLex))
+                        .addComponent(btnLimpiarLex)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnImprimir))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(47, 47, 47)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -425,8 +585,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLimpiarSinActionPerformed
 
     private void btnAnalizarLexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnalizarLexActionPerformed
-        try {
+        try {      
             analizarLexico();
+            String ResultadosAnalisis = txtResultado.getText();
+            
+            
         } catch (IOException ex) {
             Logger.getLogger(FrmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -447,6 +610,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
             txtAnalizarSin.setForeground(Color.red);
         }
     }//GEN-LAST:event_btnAnalizarSinActionPerformed
+
+    private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnImprimirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -487,6 +654,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnAnalizarLex;
     private javax.swing.JButton btnAnalizarSin;
     private javax.swing.JButton btnArchivo;
+    private javax.swing.JButton btnImprimir;
     private javax.swing.JButton btnLimpiarLex;
     private javax.swing.JButton btnLimpiarSin;
     private javax.swing.JPanel jPanel1;

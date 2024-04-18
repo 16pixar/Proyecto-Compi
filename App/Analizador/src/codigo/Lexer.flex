@@ -77,10 +77,6 @@ espacio=[ \t,\r]+
 /* Apertura Cierre Comentario Simple */
 ( "//" ) {lexeme=yytext(); return APERTURACIERRECOMENTARIOSIMPLE;}
 
-/* Apertura Cierre Comentario Simple */
-( ";" ) {lexeme=yytext(); return APERTURACIERRECOMENTARIOSIMPLE;}
-
-
 /* Comentarios */
 ( "//"(.)* ) {/*Ignore*/}
 
