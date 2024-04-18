@@ -6,6 +6,7 @@ import static codigo.Tokens.*;
 L=[a-zA-Z_]+
 Le=[a-zA-Z_]
 D=[0-9]+
+cero=[0]
 
 espacio=[ \t,\r]+
 %{
@@ -19,9 +20,14 @@ espacio=[ \t,\r]+
 /* Inicio o fin de bloque */
 ( "_") { lexeme=yytext(); return INICIOFINBLOQUE; }
 
+/* Inicio o fin de bloque */
+( "-") { lexeme=yytext(); return SIGNO; }
+
 /* CHAR */
 {Le}{1,1} {lexeme=yytext(); return LETRA;}
 
+/* CERO */
+{cero}{1,1} {lexeme=yytext(); return CERO;}
 
 /* Espacios en blanco */
 {espacio} {/*Ignore*/}
@@ -113,17 +119,12 @@ espacio=[ \t,\r]+
 /* Separador */
 ( ":" ) { lexeme=yytext(); return SEP;}
 
-/* Parámetro */
-( "param" ) { lexeme=yytext(); return PARAM; }
 
-/* Not */
-( "not" ) { lexeme=yytext(); return NOT; }
 
 /* Read */
 ( "read" ) { lexeme=yytext(); return READ; }
 
-/* Write */
-( "write") { lexeme=yytext(); return WRITE; }
+
 
 /* Tipo de dato String */
 ( "string" ) {lexeme=yytext(); return STRING;}
@@ -193,8 +194,6 @@ espacio=[ \t,\r]+
 
 /* Solicitud Faltantes Terminales */
 
-/* Funcion */
-( "func" ) {lexeme = yytext(); return FUNC;}
 
 /* Error de analisis */
  . {return ERROR;}

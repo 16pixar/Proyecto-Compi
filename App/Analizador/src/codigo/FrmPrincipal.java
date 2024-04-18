@@ -303,7 +303,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                     resultado += "  <DIGITOS>\t\t\t" + lexer.lexeme + "\n";
                     break;
                 case CERO:
-                    resultado += "  <CERO>\t\t\t\n";
+                    resultado += "  <CERO>\t\t\t" + lexer.lexeme + "\n";
                     break;
                 case ERROR:
                     resultado += "  <Simbolo no definido>\t\t\t\n";
