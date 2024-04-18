@@ -4,6 +4,7 @@ import static codigo.Tokens.*;
 %class Lexer
 %type Tokens
 L=[a-zA-Z_]+
+Le=[a-zA-Z_]
 D=[0-9]+
 
 espacio=[ \t,\r]+
@@ -15,23 +16,73 @@ espacio=[ \t,\r]+
 /* Coma */
 ( "," ) {lexeme=yytext(); return COMA;}
 
+/* CHAR */
+{Le}{1,1} {lexeme=yytext(); return LETRA;}
+
+
 /* Espacios en blanco */
 {espacio} {/*Ignore*/}
 
+/* INT */
+( "int" ) {lexeme = yytext(); return INT;}
+
+/* not */
+( "not" ) {lexeme = yytext(); return NOT;}
+
+/* WRITE */
+( "write" ) {lexeme = yytext(); return WRITE;}
+
+/* Break */
+( "break" ) {lexeme = yytext(); return BREAK;}
+
+/* SWITCH */
+( "switch" ) {lexeme = yytext(); return SWITCH;}
+
+/* PARAM */
+( "param" ) {lexeme = yytext(); return PARAM;}
+
+/* RANGE */
+( "range" ) {lexeme = yytext(); return RANGE;}
+
+/* RETURN */
+( "return" ) {lexeme = yytext(); return RETURN;}
+
+/* CASE */
+( "case" ) {lexeme = yytext(); return CASE;}
+
+/* BOOL */
+( "bool" ) {lexeme = yytext(); return BOOL;}
+
+/* CHAR */
+( "char" ) {lexeme = yytext(); return CHAR;}
+
+/* ARREGLO */
+( "arreglo" ) {lexeme = yytext(); return ARREGLO;}
+
+/* Punto */
+( "." ) {lexeme = yytext(); return PUNTO;}
+
 /* In */
-( "In" ) {lexeme=yytext(); return IN;}
+( "in" ) {lexeme=yytext(); return IN;}
 
 /* Float */
 ( "float" ) {lexeme=yytext(); return FLOAT;}
 
+/* Final de expresión */
+( ";" ) { lexeme=yytext(); return FINALEXPRESION;}
+
 /* Apertura Cierre Comentario Simple */
 ( "//" ) {lexeme=yytext(); return APERTURACIERRECOMENTARIOSIMPLE;}
+
+/* Apertura Cierre Comentario Simple */
+( ";" ) {lexeme=yytext(); return APERTURACIERRECOMENTARIOSIMPLE;}
+
 
 /* Comentarios */
 ( "//"(.)* ) {/*Ignore*/}
 
 /* Salto de linea */
-( "\n" ) {return Linea;}
+( "\n" ) {return SALTOLINEA;}
 
 /* ComillasD */
 ( "\"" ) {lexeme=yytext(); return COMILLAD;}
@@ -39,8 +90,8 @@ espacio=[ \t,\r]+
 /* ComillasS */
 ( "\'" ) {lexeme=yytext(); return COMILLAS;}
 
-/* Final de expresión */
-( ";" ) { lexeme=yytext(); return FINALEXPRESION; }
+
+
 
 /* Apertura de comentario compuesto */
 ( "/*" ) {lexeme=yytext(); return APERTURACOMENTARIOCOMPUESTO; }
@@ -79,22 +130,19 @@ espacio=[ \t,\r]+
 ( "write") { lexeme=yytext(); return WRITE; }
 
 /* Tipo de dato String */
-( String ) {lexeme=yytext(); return Cadena;}
+( "string" ) {lexeme=yytext(); return STRING;}
 
 /* Palabra reservada If */
-( if ) {lexeme=yytext(); return If;}
+( if ) {lexeme=yytext(); return IF;}
 
 /* Palabra reservada Else */
-( else ) {lexeme=yytext(); return Else;}
-
-/* Palabra reservada Do */
-( do ) {lexeme=yytext(); return Do;}
+( else ) {lexeme=yytext(); return ELSE;}
 
 /* Palabra reservada While */
-( while ) {lexeme=yytext(); return While;}
+( while ) {lexeme=yytext(); return WHILE;}
 
 /* Palabra reservada For */
-( for ) {lexeme=yytext(); return For;}
+( for ) {lexeme=yytext(); return FOR;}
 
 /* IGUAL */
 ( "=" ) {lexeme=yytext(); return IGUAL;}
@@ -136,28 +184,13 @@ espacio=[ \t,\r]+
 ( "]" ) {lexeme = yytext(); return LLAVECUADRADACIERRA;}
 
 /* Marcador de inicio de algoritmo */
-( "main" ) {lexeme=yytext(); return Main;}
-
-/* Punto y coma */
-( ";" ) {lexeme=yytext(); return P_coma;}
+( "main" ) {lexeme=yytext(); return MAIN;}
 
 /* Identificador */
 {L}({L}|{D})* {lexeme=yytext(); return IDENTIFICADOR;}
 
 /* Numero */
 ("(-"{D}+")")|{D}+ {lexeme=yytext(); return DIGITOS;}
-
-/* INT */
-( "int" ) {lexeme = yytext(); return INT;}
-
-/* CHAR */
-( "char" ) {lexeme = yytext(); return CHAR;}
-
-/* ARREGLO */
-( "arreglo" ) {lexeme = yytext(); return ARREGLO;}
-
-/* Punto */
-( "." ) {lexeme = yytext(); return PUNTO;}
 
 /* Solicitud Faltantes Terminales */
 

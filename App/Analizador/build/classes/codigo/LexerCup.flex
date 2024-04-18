@@ -29,7 +29,7 @@ espacio=[ \t,\r,\n]+
 {espacio} {/*Ignore*/}
 
 /* In */
-( "In" ) {return new Symbol(sym.In, yychar, yyline, yytext());}
+( "In" ) {return new Symbol(sym.IN, yychar, yyline, yytext());}
 
 /* Float */
 ( "float" ) {return new Symbol(sym.FLOAT, yychar, yyline, yytext());}
