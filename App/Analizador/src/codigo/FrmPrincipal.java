@@ -38,7 +38,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         
         String expr = (String) txtResultado.getText();
         Lexer lexer = new Lexer(new StringReader(expr));
-        String resultado = "LINEA " + cont + "\t\tSIMBOLO\n";
+        String resultado = "LINEA " + cont + "\t\t\tSIMBOLO\n";
         while (true) {
             Tokens token = lexer.yylex();
             if (token == null) {
@@ -51,181 +51,181 @@ public class FrmPrincipal extends javax.swing.JFrame {
                     resultado += "LINEA " + cont + "\n";
                     break;
                 case INT:
-                    resultado += "  <INT>\t\t" + lexer.lexeme + "\n";
+                    resultado += "  <INT>\t\t\t" + lexer.lexeme + "\n";
                     break;
                 case APERTURACIERRECOMENTARIOSIMPLE:
-                    resultado += "  <ACCOMENTARIOS>\t\t" + lexer.lexeme + "\n";
+                    resultado += "  <ACCOMENTARIOS>\t\t\t" + lexer.lexeme + "\n";
                     break;
                 case CHAR:
-                    resultado += "  <CHAR>\t\t" + lexer.lexeme + "\n";
+                    resultado += "  <CHAR>\t\t\t" + lexer.lexeme + "\n";
                     break;
                 case STRING:
-                    resultado += "  <STRING>\t\t" + lexer.lexeme + "\n";
+                    resultado += "  <STRING>\t\t\t" + lexer.lexeme + "\n";
                     break;
                 case CASE:
-                    resultado += "  <CASE>\t\t" + lexer.lexeme + "\n";
+                    resultado += "  <CASE>\t\t\t" + lexer.lexeme + "\n";
                     break;
                 case RANGE:
-                    resultado += "  <RANGE>\t\t" + lexer.lexeme + "\n";
+                    resultado += "  <RANGE>\t\t\t" + lexer.lexeme + "\n";
                     break;
                 case RETURN:
-                    resultado += "  <RETURN>\t\t" + lexer.lexeme + "\n";
+                    resultado += "  <RETURN>\t\t\t" + lexer.lexeme + "\n";
                     break;
                 case IN:
-                    resultado += "  <IN>\t\t" + lexer.lexeme + "\n";
+                    resultado += "  <IN>\t\t\t" + lexer.lexeme + "\n";
                     break;
                 case ARREGLO:
-                    resultado += "  <ARREGLO>\t\t" + lexer.lexeme + "\n";
+                    resultado += "  <ARREGLO>\t\t\t" + lexer.lexeme + "\n";
                     break;
                 case FLOAT:
-                    resultado += "  <FLOAT>\t\t" + lexer.lexeme + "\n";
+                    resultado += "  <FLOAT>\t\t\t" + lexer.lexeme + "\n";
                     break;
                 case BOOL:
-                    resultado += "  <BOOL>\t\t" + lexer.lexeme + "\n";
+                    resultado += "  <BOOL>\t\t\t" + lexer.lexeme + "\n";
                     break;
                 case Cadena:
-                    resultado += "  <Tipo de dato>\t" + lexer.lexeme + "\n";
+                    resultado += "  <Tipo de dato>\t\t\t" + lexer.lexeme + "\n";
                     break;
                 case T_dato:
-                    resultado += "  <Tipo de dato>\t" + lexer.lexeme + "\n";
+                    resultado += "  <Tipo de dato>\t\t\t" + lexer.lexeme + "\n";
                     break;
                 case IF:
-                    resultado += "  <Reservada if>\t" + lexer.lexeme + "\n";
+                    resultado += "  <Reservada if>\t\t" + lexer.lexeme + "\n";
                     break;
                 case ELSE:
-                    resultado += "  <Reservada else>\t" + lexer.lexeme + "\n";
+                    resultado += "  <Reservada else>\t\t" + lexer.lexeme + "\n";
                     break;
                 case WHILE:
-                    resultado += "  <Reservada while>\t" + lexer.lexeme + "\n";
+                    resultado += "  <Reservada while>\t\t" + lexer.lexeme + "\n";
                     break;
                 case FOR:
-                    resultado += "  <Reservada while>\t" + lexer.lexeme + "\n";
+                    resultado += "  <Reservada for>\t\t" + lexer.lexeme + "\n";
                     break;
                 case IGUAL:
-                    resultado += "  <IGUAL>\t\t" + lexer.lexeme + "\n";
+                    resultado += "  <IGUAL>\t\t\t" + lexer.lexeme + "\n";
                     break;
                 case Op_binarias:
-                    resultado += "  <Operador binario>\t" + lexer.lexeme + "\n";
+                    resultado += "  <Operador binario>\t\t" + lexer.lexeme + "\n";
                     break;
                 case Op_unarias:
-                    resultado += "  <Operador unario>\t" + lexer.lexeme + "\n";
+                    resultado += "  <Operador unario>\t\t" + lexer.lexeme + "\n";
                     break;
                 case Op_relacional:
-                    resultado += "  <Operador relacional>\t" + lexer.lexeme + "\n";
+                    resultado += "  <Operador relacional>\t\t" + lexer.lexeme + "\n";
                     break;
                 case Op_comparacion:
-                    resultado += "  <Operador comparación>\t" + lexer.lexeme + "\n";
+                    resultado += "  <Operador comparación>\t\t" + lexer.lexeme + "\n";
                     break;
                 case Op_logico:
-                    resultado += "  <Operador logico>\t" + lexer.lexeme + "\n";
+                    resultado += "  <Operador logico>\t\t" + lexer.lexeme + "\n";
                     break;
                 case Op_booleano:
-                    resultado += "  <Operador booleano>\t" + lexer.lexeme + "\n";
+                    resultado += "  <Operador booleano>\t\t" + lexer.lexeme + "\n";
                     break;
                 case LLAVEPARENTESISABRE:
-                    resultado += "  <LLAVEPARENTESISABRE>\t" + lexer.lexeme + "\n";
+                    resultado += "  <LLAVEPARENTESISABRE>\t\t" + lexer.lexeme + "\n";
                     break;
                 case LLAVEPARENTESISCIERRA:
-                    resultado += "  <LLAVEPARENTESISCIERRA>" + lexer.lexeme + "\n";
+                    resultado += "  <LLAVEPARENTESISCIERRA>\t" + lexer.lexeme + "\n";
                     break;
                 case LLAVECORCHETEABRE:
-                    resultado += "  <LLAVECORCHETEABRE>\t" + lexer.lexeme + "\n";
+                    resultado += "  <LLAVECORCHETEABRE>\t\t" + lexer.lexeme + "\n";
                     break;
                 case LLAVECORCHETECIERRA:
-                    resultado += "  <LLAVECORCHETECIERRA>" + lexer.lexeme + "\n";
+                    resultado += "  <LLAVECORCHETECIERRA>\t\t" + lexer.lexeme + "\n";
                     break;
                 case LLAVECUADRADAABRE:
-                    resultado += "  <LLAVECUADRADAABRE>\t" + lexer.lexeme + "\n";
+                    resultado += "  <LLAVECUADRADAABRE>\t\t" + lexer.lexeme + "\n";
                     break;
                 case LLAVECUADRADACIERRA:
-                    resultado += "  <LLAVECUADRADACIERRA>\t" + lexer.lexeme + "\n";
+                    resultado += "  <LLAVECUADRADACIERRA>\t\t" + lexer.lexeme + "\n";
                     break;
                 case MAIN:
-                    resultado += "  <Reservada main>\t" + lexer.lexeme + "\n";
+                    resultado += "  <Reservada main>\t\t" + lexer.lexeme + "\n";
                     break;
                 case FINALEXPRESION:
-                    resultado += "  <FINALEXPRESION>\t" + lexer.lexeme + "\n";
+                    resultado += "  <FINALEXPRESION>\t\t" + lexer.lexeme + "\n";
                     break;
                 case LETRA:
-                    resultado += "  <LETRA>\t\t" + lexer.lexeme + "\n";
+                    resultado += "  <LETRA>\t\t\t" + lexer.lexeme + "\n";
                     break;
                 case DIGITOS:
-                    resultado += "  <DIGITOS>\t\t" + lexer.lexeme + "\n";
+                    resultado += "  <DIGITOS>\t\t\t" + lexer.lexeme + "\n";
                     break;
                 case CERO:
-                    resultado += "  <CERO>\n";
+                    resultado += "  <CERO>\t\t\t\n";
                     break;
                 case ERROR:
-                    resultado += "  <Simbolo no definido>\n";
+                    resultado += "  <Simbolo no definido>\t\t\t\n";
                     break;
                 case DIGCONCERO:
-                    resultado += "  <DIGCONCERO>\t\t" + lexer.lexeme + "\n";
+                    resultado += "  <DIGCONCERO>\t\t\t" + lexer.lexeme + "\n";
                     break;
                 case CARACTERESPECIALES:
-                    resultado += "  <CARACTERESPECIALES>\t\t" + lexer.lexeme + "\n";
+                    resultado += "  <CARACTERESPECIALES>\t\t\t" + lexer.lexeme + "\n";
                     break;
                 case SIGNO:
-                    resultado += "  <SIGNO>\t\t" + lexer.lexeme + "\n";
+                    resultado += "  <SIGNO>\t\t\t" + lexer.lexeme + "\n";
                     break;
                 case PUNTO:
-                    resultado += "  <PUNTO>\t\t" + lexer.lexeme + "\n";
+                    resultado += "  <PUNTO>\t\t\t" + lexer.lexeme + "\n";
                     break;
                 case COMA:
-                    resultado += "  <COMA>\t\t" + lexer.lexeme + "\n";
+                    resultado += "  <COMA>\t\t\t" + lexer.lexeme + "\n";
                     break;
                 case SALTOLINEA:
-                    resultado += "  <SALTOLINEA>\t" + "salto" + "\n";
+                    resultado += "  <SALTOLINEA>\t\t" + "salto" + "\n";
                     break;            
                 case APERTURACOMENTARIOCOMPUESTO:
-                    resultado += "  <APERTURACOMENTARIOCOMPUESTO>\t\t" + lexer.lexeme + "\n";
+                    resultado += "  <APERTURACOMENTARIOCOMPUESTO>\t" + lexer.lexeme + "\n";
                     break;
                 case CIERRECOMENTARIOCOMPUESTO:
-                    resultado += "  <CIERRECOMENTARIOCOMPUESTO>\t\t" + lexer.lexeme + "\n";
+                    resultado += "  <CIERRECOMENTARIOCOMPUESTO>\t" + lexer.lexeme + "\n";
                     break;
                 case NULL:
-                    resultado += "  <NULL>\t\t" + lexer.lexeme + "\n";
+                    resultado += "  <NULL>\t\t\t" + lexer.lexeme + "\n";
                     break;
                 case FUNC:
-                    resultado += "  <FUNC>\t\t" + lexer.lexeme + "\n";
+                    resultado += "  <FUNC>\t\t\t" + lexer.lexeme + "\n";
                     break;
                 case GLOB:
-                    resultado += "  <GLOB>\t\t" + lexer.lexeme + "\n";
+                    resultado += "  <GLOB>\t\t\t" + lexer.lexeme + "\n";
                     break;
                 case LOC:
-                    resultado += "  <LOC>\t\t" + lexer.lexeme + "\n";
+                    resultado += "  <LOC>\t\t\t" + lexer.lexeme + "\n";
                     break;
                 case SEP:
-                    resultado += "  <SEP>\t\t" + lexer.lexeme + "\n";
+                    resultado += "  <SEP>\t\t\t" + lexer.lexeme + "\n";
                     break;
                 case INICIOFINBLOQUE:
-                    resultado += "  <INICIOFINBLOQUE>\t" + lexer.lexeme + "\n";
+                    resultado += "  <INICIOFINBLOQUE>\t\t" + lexer.lexeme + "\n";
                     break;
                 case PARAM:
-                    resultado += "  <PARAM>\t\t" + lexer.lexeme + "\n";
+                    resultado += "  <PARAM>\t\t\t" + lexer.lexeme + "\n";
                     break;
                 case NOT:
-                    resultado += "  <NOT>\t\t" + lexer.lexeme + "\n";
+                    resultado += "  <NOT>\t\t\t" + lexer.lexeme + "\n";
                     break;
                 case READ:
-                    resultado += "  <READ>\t\t" + lexer.lexeme + "\n";
+                    resultado += "  <READ>\t\t\t" + lexer.lexeme + "\n";
                     break;
                 case WRITE:
-                    resultado += "  <WRITE>\t\t" + lexer.lexeme + "\n";
+                    resultado += "  <WRITE>\t\t\t" + lexer.lexeme + "\n";
                     break;
                 case COMILLAS:
-                    resultado += "  <COMILLAS>\t\t" + lexer.lexeme + "\n";
+                    resultado += "  <COMILLAS>\t\t\t" + lexer.lexeme + "\n";
                     break;
                 case COMILLAD:
-                    resultado += "  <COMILLAD>\t\t" + lexer.lexeme + "\n";
+                    resultado += "  <COMILLAD>\t\t\t" + lexer.lexeme + "\n";
                     break;
                 case IDENTIFICADOR:
                     resultado += "  <Identificador>\t\t" + lexer.lexeme + "\n";
                     break;
                 case BREAK:
-                    resultado += "  <BREAK>\t\t" + lexer.lexeme + "\n";
+                    resultado += "  <BREAK>\t\t\t" + lexer.lexeme + "\n";
                     break;
                 case SWITCH:
-                    resultado += "  <SWITCH>\t\t" + lexer.lexeme + "\n";
+                    resultado += "  <SWITCH>\t\t\t" + lexer.lexeme + "\n";
                     break;
                 default:
                     resultado += "  < " + lexer.lexeme + " >\n";
@@ -297,13 +297,15 @@ public class FrmPrincipal extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 239, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(325, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnAnalizarLex)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnLimpiarLex))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnAnalizarLex, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnLimpiarLex, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addContainerGap()
@@ -313,12 +315,17 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnArchivo)
-                    .addComponent(btnAnalizarLex)
-                    .addComponent(btnLimpiarLex))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnArchivo)
+                        .addGap(74, 74, 74)
+                        .addComponent(btnAnalizarLex)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnLimpiarLex))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                     .addGap(0, 50, Short.MAX_VALUE)
