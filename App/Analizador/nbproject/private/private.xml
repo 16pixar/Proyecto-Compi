@@ -3,12 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/danie/OneDrive/Documentos/GitHub/Proyecto-Compi/App/Analizador/src/codigo/Tokens.java</file>
-            <file>file:/C:/Users/danie/OneDrive/Documentos/GitHub/Proyecto-Compi/App/Analizador/src/codigo/Sintax.cup</file>
-            <file>file:/C:/Users/danie/OneDrive/Documentos/GitHub/Proyecto-Compi/App/Analizador/src/codigo/LexerCup.java</file>
-            <file>file:/C:/Users/danie/OneDrive/Documentos/GitHub/Proyecto-Compi/App/Analizador/src/codigo/FrmPrincipal.java</file>
-            <file>file:/C:/Users/danie/OneDrive/Documentos/GitHub/Proyecto-Compi/App/Analizador/src/codigo/LexerCup.flex</file>
-            <file>file:/C:/Users/danie/OneDrive/Documentos/GitHub/Proyecto-Compi/App/Analizador/src/codigo/Lexer.flex</file>
+            <file>file:/C:/Users/aronm/Documents/TEC/Compiladores/Proyectos/1/Proyecto-Compi/App/Analizador/src/codigo/Resultados.txt</file>
+            <file>file:/C:/Users/aronm/Documents/TEC/Compiladores/Proyectos/1/Proyecto-Compi/App/Analizador/src/codigo/Principal.java</file>
+            <file>file:/C:/Users/aronm/Documents/TEC/Compiladores/Proyectos/1/Proyecto-Compi/App/Analizador/src/codigo/Lexer.java</file>
+            <file>file:/C:/Users/aronm/Documents/TEC/Compiladores/Proyectos/1/Proyecto-Compi/App/Analizador/src/codigo/LexerCup.flex</file>
+            <file>file:/C:/Users/aronm/Documents/TEC/Compiladores/Proyectos/1/Proyecto-Compi/App/Analizador/src/codigo/FrmPrincipal.java</file>
+            <file>file:/C:/Users/aronm/Documents/TEC/Compiladores/Proyectos/1/Proyecto-Compi/App/Analizador/src/codigo/Sintax.cup</file>
+            <file>file:/C:/Users/aronm/Documents/TEC/Compiladores/Proyectos/1/Proyecto-Compi/App/Analizador/src/codigo/Sintax.java</file>
+            <file>file:/C:/Users/aronm/Documents/TEC/Compiladores/Proyectos/1/Proyecto-Compi/App/Analizador/src/codigo/sym.java</file>
+            <file>file:/C:/Users/aronm/Documents/TEC/Compiladores/Proyectos/1/Proyecto-Compi/App/Analizador/src/codigo/LexerCup.java</file>
+            <file>file:/C:/Users/aronm/Documents/TEC/Compiladores/Proyectos/1/Proyecto-Compi/App/Analizador/src/codigo/Lexer.flex</file>
+            <file>file:/C:/Users/aronm/Documents/TEC/Compiladores/Proyectos/1/Proyecto-Compi/App/Analizador/src/codigo/Tokens.java</file>
         </group>
     </open-files>
 </project-private>

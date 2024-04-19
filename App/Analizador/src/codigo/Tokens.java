@@ -2,7 +2,7 @@
 package codigo;
 
 /**
- *
+ * Tokens permitidos segun la gramatica
  * 
  */
 public enum Tokens {

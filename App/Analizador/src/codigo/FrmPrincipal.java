@@ -24,7 +24,7 @@ import java_cup.runtime.Symbol;
 import javax.swing.JFileChooser;
 
 /**
- *
+ * Clase encargada de la visualizacion y interaccion con el usuario
  
  */
 public class FrmPrincipal extends javax.swing.JFrame {
@@ -36,6 +36,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
     }
+    /**
+     * Busca la correlacion entrante con la tabla de simbolos
+     * @param variableABuscar
+     * @return digito segun la tabla de simbolos
+     */
     public static int buscarVariable(String variableABuscar) {
         switch (variableABuscar) {
             case "<DIGITOS>": return 33;
@@ -88,7 +93,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
         }
     }
  
-    
+    /**
+     * Se encarga de hacer el analisis lexico del programa mostrandolo apartir del boton 
+     * @throws IOException 
+     */
     private void analizarLexico() throws IOException{
         int cont = 1;
         
@@ -192,6 +200,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
    
                 return;
             }
+            // Casos en base a los lexemas existentes para su visualizacion
             switch (token) {
                 case Linea:
                     cont++;
