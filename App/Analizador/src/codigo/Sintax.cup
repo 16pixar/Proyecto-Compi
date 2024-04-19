@@ -15,77 +15,436 @@ parser code
 }
 :};
 
-terminal Linea, COMILLAS, T_dato, Int, Cadena, If, Else, Do, While, For,COMILLAD,FUNC,
-    IGUAL, Suma, Resta, Multiplicacion, Division, Op_logico, Op_relacional,
-    Op_atribucion, Op_incremento, Op_booleano, LLAVEPARENTESISABRE,LLAVEPARENTESISCIERRA,
-    LLAVECORCHETEABRE, LLAVECORCHETECIERRA, LLAVECUADRADAABRE, LLAVECUADRADACIERRA, Main, P_coma,IDENTIFICADOR,
-    DIGITOS, ERROR,COMA,APERTURACOMENTARIOCOMPUESTO,CIERRECOMENTARIOCOMPUESTO,PUNTO,SEP, INT, IN, FLOAT, APERTURACIERRECOMENTARIOSIMPLE;
+terminal Op_booleano, LLAVECORCHETEABRE, LLAVECORCHETECIERRA, ERROR,FUNC,SEP,LLAVEPARENTESISABRE,INICIOFINBLOQUE,MAIN,IDENTIFICADOR,FINALEXPRESION, 
+GLOB, LOC, INT, BOOL, FLOAT, CHAR, STRING, ARREGLO, IGUAL, NULL, CERO, DIGITOS, SIGNO,PUNTO, COMILLAS, LETRA,LLAVECUADRADAABRE,LLAVECUADRADACIERRA, LLAVEPARENTESISCIERRA, Op_binarias, 
+Op_unarias, Op_comparacion, Op_relacional, Op_logico, NOT, WRITE, READ, PARAM, COMILLAD,COMA,IF, BREAK, ELSE, SWITCH,
+CASE, WHILE, FOR,IN,RANGE, RETURN, APERTURACIERRECOMENTARIOSIMPLE, APERTURACOMENTARIOCOMPUESTO, CIERRECOMENTARIOCOMPUESTO, SALTOLINEA;
+
+non terminal inicio,programa, bloqueCod, tipoFuncion, funcion, sentencia, estrucControl,return,comentario,break,crearVariable, tipoAlcance, crearAsignarVariable, tipoVariable, literal, int, intPositivo, intNegativo,
+float, floatCero, floatPositivo, floatNegativo, char, string, expresion, expresionBinaria, valorNumerico, invocarFuncion, parametro, parametroFinal, expresionUnaria, expresionBinariaUnaria, valorArreglo,
+expresionRelacion, valorLogico, expresionConjuntiva, expresionNegacion, expresionMultiple, asignarVariable, modificarArreglo, writer, reader, crearParam, if, bloqueControl, else, switch,case,
+while, for, comentarioLinea, comentarioCompuesto, bloqueComentario, saltoLinea, arreglo, tipoArreglo,elementoArreglo, elementoFinal  ;
+
+precedence left  Op_logico;
+precedence left  Op_relacional;
+precedence left  Op_comparacion;
+precedence left  Op_binarias;
+precedence left  Op_unarias;
+precedence left  SIGNO;
+precedence left  FINALEXPRESION;
+precedence left  IDENTIFICADOR;
+precedence left  LLAVEPARENTESISABRE, LLAVEPARENTESISCIERRA;
 
 
-non terminal INICIO, SENTENCIA, DECLARACION, DECLARACION_FOR, IF, IF_ELSE,
-    WHILE, DO_WHILE, FOR, SENTENCIA_BOOLEANA, SENTENCIA_FOR;
 
-start with INICIO;
 
-INICIO ::= 
-    Int Main LLAVEPARENTESISABRE LLAVEPARENTESISCIERRA LLAVECORCHETEABRE SENTENCIA LLAVECORCHETECIERRA |
-    Main LLAVEPARENTESISABRE LLAVEPARENTESISCIERRA LLAVECORCHETEABRE SENTENCIA LLAVECORCHETECIERRA
+start with inicio;
+
+inicio ::= 
+    programa
 ;
 
-SENTENCIA ::= 
-    SENTENCIA DECLARACION |
-    DECLARACION |
-    SENTENCIA IF | 
-    IF |
-    SENTENCIA IF_ELSE |
-    IF_ELSE |
-    SENTENCIA WHILE |
-    WHILE |
-    SENTENCIA DO_WHILE
-    DO_WHILE |
-    SENTENCIA FOR |
-    FOR
+programa ::= 
+    FUNC SEP tipoFuncion SEP MAIN LLAVEPARENTESISABRE  INICIOFINBLOQUE bloqueCod INICIOFINBLOQUE |
+    funcion programa |
+    funcion
 ;
-DECLARACION ::= 
-    Int IDENTIFICADOR P_coma | 
-    Int IDENTIFICADOR Op_atribucion DIGITOS P_coma |
-    Int IDENTIFICADOR IGUAL DIGITOS P_coma |
-    Int IDENTIFICADOR Op_incremento P_coma | 
-    Int Op_incremento IDENTIFICADOR P_coma | 
-    T_dato IDENTIFICADOR P_coma | 
-    T_dato IDENTIFICADOR Op_atribucion DIGITOS P_coma |
-    T_dato IDENTIFICADOR IGUAL DIGITOS P_coma |
-    T_dato IDENTIFICADOR Op_incremento P_coma | 
-    T_dato Op_incremento IDENTIFICADOR P_coma | 
-    Cadena IDENTIFICADOR Op_atribucion COMILLAS COMILLAS P_coma |
-    Cadena IDENTIFICADOR IGUAL COMILLAS COMILLAS P_coma |
-    Cadena IDENTIFICADOR Op_atribucion COMILLAS IDENTIFICADOR COMILLAS P_coma |
-    Cadena IDENTIFICADOR IGUAL COMILLAS IDENTIFICADOR COMILLAS P_coma
+
+tipoFuncion ::= 
+    INT |   
+    BOOL | 
+    FLOAT | 
+    CHAR | 
+    STRING | 
+    ARREGLO
 ;
-IF ::= If LLAVEPARENTESISABRE SENTENCIA_BOOLEANA LLAVEPARENTESISCIERRA LLAVECORCHETEABRE SENTENCIA LLAVECORCHETECIERRA
+
+tipoArreglo ::= 
+    INT |   
+    CHAR 
 ;
-SENTENCIA_BOOLEANA ::= 
-    Op_booleano | 
-    IDENTIFICADOR Op_relacional Op_booleano |
-    IDENTIFICADOR Op_relacional DIGITOS |
-    IDENTIFICADOR Op_relacional IDENTIFICADOR |
-    IDENTIFICADOR Op_relacional COMILLAS COMILLAS |
-    IDENTIFICADOR Op_relacional COMILLAS IDENTIFICADOR COMILLAS
+
+tipoAlcance ::= 
+    GLOB | 
+    LOC 
 ;
-IF_ELSE ::= If LLAVEPARENTESISABRE SENTENCIA_BOOLEANA LLAVEPARENTESISCIERRA LLAVECORCHETEABRE SENTENCIA LLAVECORCHETECIERRA Else LLAVECORCHETEABRE SENTENCIA LLAVECORCHETECIERRA
+
+tipoVariable ::=  
+    INT | 
+    BOOL | 
+    FLOAT | 
+    CHAR | 
+    STRING | 
+    ARREGLO 
 ;
-WHILE ::= While LLAVEPARENTESISABRE SENTENCIA_BOOLEANA LLAVEPARENTESISCIERRA LLAVECORCHETEABRE SENTENCIA LLAVECORCHETECIERRA
+
+literal ::= 
+    int |
+    float |
+    string |
+    char |
+    arreglo |
+    Op_booleano
 ;
-DO_WHILE ::= Do LLAVECORCHETEABRE SENTENCIA LLAVECORCHETECIERRA While LLAVEPARENTESISABRE SENTENCIA_BOOLEANA LLAVEPARENTESISCIERRA P_coma
+
+int	::= 
+    CERO | 
+    intPositivo | 
+    intNegativo
 ;
-FOR ::= For LLAVEPARENTESISABRE SENTENCIA_FOR LLAVEPARENTESISCIERRA LLAVECORCHETEABRE SENTENCIA LLAVECORCHETECIERRA
+
+intPositivo ::= 
+    DIGITOS 
 ;
-SENTENCIA_FOR ::=
-    T_dato IDENTIFICADOR IGUAL DIGITOS P_coma SENTENCIA_BOOLEANA P_coma DECLARACION_FOR |
-    IDENTIFICADOR IGUAL DIGITOS P_coma SENTENCIA_BOOLEANA P_coma DECLARACION_FOR
+
+intNegativo ::= 
+    SIGNO DIGITOS 
 ;
-DECLARACION_FOR ::= 
-    IDENTIFICADOR Op_atribucion DIGITOS |
-    IDENTIFICADOR Op_incremento | 
-    Op_incremento IDENTIFICADOR
+
+float ::= 
+    floatCero | 
+    floatPositivo | 
+    floatNegativo
+;
+
+floatCero ::= 
+    CERO PUNTO intPositivo 
+;
+
+floatPositivo ::= 
+    intPositivo PUNTO intPositivo 
+;
+
+floatNegativo ::= 
+    SIGNO floatCero |
+    SIGNO floatPositivo 
+;
+
+char ::=  
+    COMILLAS LETRA COMILLAS 
+;
+
+string ::=  
+    COMILLAD IDENTIFICADOR COMILLAD 
+;
+
+arreglo ::= 
+    tipoArreglo SEP LLAVECUADRADAABRE elementoArreglo elementoFinal LLAVECUADRADACIERRA |
+    tipoArreglo SEP LLAVECUADRADAABRE elementoFinal LLAVECUADRADACIERRA
+;
+
+elementoArreglo	::= 
+    int COMA |
+    char COMA |
+    elementoArreglo elementoArreglo
+;
+
+elementoFinal::= 
+    int |
+    char
+;
+
+funcion ::= 
+    FUNC SEP tipoFuncion SEP IDENTIFICADOR INICIOFINBLOQUE bloqueCod INICIOFINBLOQUE 
+;
+
+bloqueCod ::= 
+    sentencia | 
+    estrucControl | 
+    return | 
+    comentario | 
+    break |
+    sentencia bloqueCod | 
+    estrucControl bloqueCod | 
+    comentario bloqueCod
+;
+
+sentencia ::= 
+    crearVariable |
+    crearAsignarVariable |
+    asignarVariable |
+    modificarArreglo |
+    sentencia sentencia |
+    invocarFuncion FINALEXPRESION |
+    writer |
+    reader |
+    crearParam |
+    expresion 
+;
+
+crearVariable ::= 
+    tipoAlcance SEP tipoVariable SEP IDENTIFICADOR FINALEXPRESION
+;
+
+crearAsignarVariable ::= 
+    tipoAlcance SEP tipoVariable SEP IDENTIFICADOR IGUAL literal  FINALEXPRESION |
+    tipoAlcance SEP tipoVariable SEP IDENTIFICADOR IGUAL expresion  FINALEXPRESION |
+    tipoAlcance SEP tipoVariable SEP IDENTIFICADOR IGUAL  IDENTIFICADOR | FINALEXPRESION |
+    tipoAlcance SEP tipoVariable SEP IDENTIFICADOR IGUAL  invocarFuncion  FINALEXPRESION |
+    tipoAlcance SEP tipoVariable SEP IDENTIFICADOR IGUAL  NULL  FINALEXPRESION |
+    tipoAlcance SEP tipoVariable SEP IDENTIFICADOR IGUAL  valorArreglo  FINALEXPRESION 
+;
+
+expresion ::= 
+    expresionBinaria | 
+    expresionUnaria | 
+    expresionRelacion | 
+    expresionNegacion | 
+    expresionConjuntiva | 
+    expresionBinariaUnaria | 
+    expresionMultiple
+;
+
+expresionBinaria ::= 
+    SIGNO LLAVEPARENTESISABRE valorNumerico Op_binarias valorNumerico LLAVEPARENTESISCIERRA |
+    LLAVEPARENTESISABRE valorNumerico Op_binarias valorNumerico LLAVEPARENTESISCIERRA
+    SIGNO LLAVEPARENTESISABRE expresionBinaria LLAVEPARENTESISCIERRA |
+    SIGNO LLAVEPARENTESISABRE valorNumerico LLAVEPARENTESISCIERRA |
+    LLAVEPARENTESISABRE expresionBinaria LLAVEPARENTESISCIERRA |
+    LLAVEPARENTESISABRE valorNumerico LLAVEPARENTESISCIERRA |
+    expresionBinaria Op_binarias expresionBinaria 
+;
+
+
+valorNumerico ::= 
+    literal | 
+    IDENTIFICADOR | 
+    invocarFuncion | 
+    expresionBinaria | 
+    expresionUnaria |
+    expresionBinariaUnaria | 
+    valorArreglo
+;
+
+valorLogico::= 
+    literal | 
+    IDENTIFICADOR | 
+    invocarFuncion | 
+    expresionConjuntiva | 
+    expresionRelacion | 
+    expresionNegacion | 
+    expresionMultiple
+;
+
+
+invocarFuncion ::= 
+    IDENTIFICADOR LLAVEPARENTESISABRE parametroFinal LLAVEPARENTESISCIERRA |
+    IDENTIFICADOR LLAVEPARENTESISABRE parametro parametroFinal LLAVEPARENTESISCIERRA |
+    IDENTIFICADOR LLAVEPARENTESISABRE LLAVEPARENTESISCIERRA 
+;
+
+parametro ::= 
+    IDENTIFICADOR COMA | 
+    literal COMA | 
+    expresion COMA | 
+    invocarFuncion COMA |
+    parametro parametro
+;
+
+parametroFinal ::= 
+    IDENTIFICADOR | 
+    literal | 
+    expresion | 
+    invocarFuncion  
+;
+
+expresionUnaria	::= 
+    valorNumerico Op_unarias |
+    SIGNO valorNumerico
+;
+
+expresionBinariaUnaria ::= 
+    SIGNO LLAVEPARENTESISABRE expresionBinariaUnaria LLAVEPARENTESISCIERRA |
+    SIGNO LLAVEPARENTESISABRE expresionUnaria LLAVEPARENTESISCIERRA |
+    LLAVEPARENTESISABRE expresionBinariaUnaria LLAVEPARENTESISCIERRA |
+    LLAVEPARENTESISABRE expresionUnaria LLAVEPARENTESISCIERRA |
+    expresionBinariaUnaria Op_binarias expresionBinariaUnaria Op_unarias |
+    expresionBinariaUnaria Op_unarias expresionBinariaUnaria Op_unarias |
+    expresionBinariaUnaria Op_binarias  expresionBinariaUnaria |
+    expresionBinariaUnaria Op_unarias expresionBinariaUnaria |
+    expresionBinaria 
+;
+
+valorArreglo ::= 
+    IDENTIFICADOR LLAVECUADRADAABRE valorNumerico LLAVECUADRADACIERRA 
+;
+
+expresionRelacion ::= 
+    valorNumerico  Op_relacional valorNumerico | 
+    valorNumerico  Op_comparacion valorNumerico |
+    valorNumerico  Op_comparacion valorNumerico |
+    valorLogico  Op_comparacion valorLogico |
+    valorLogico  Op_comparacion valorNumerico 
+;
+
+expresionConjuntiva	::= 
+    valorLogico Op_logico valorLogico |
+    LLAVEPARENTESISABRE expresionConjuntiva LLAVEPARENTESISCIERRA Op_logico LLAVEPARENTESISABRE expresionConjuntiva  LLAVEPARENTESISCIERRA |
+    LLAVEPARENTESISABRE expresionConjuntiva LLAVEPARENTESISCIERRA Op_logico LLAVEPARENTESISABRE valorLogico  LLAVEPARENTESISCIERRA |
+    LLAVEPARENTESISABRE valorLogico LLAVEPARENTESISCIERRA Op_logico LLAVEPARENTESISABRE valorLogico LLAVEPARENTESISCIERRA |
+    LLAVEPARENTESISABRE valorLogico LLAVEPARENTESISCIERRA Op_logico LLAVEPARENTESISABRE expresionConjuntiva LLAVEPARENTESISCIERRA 
+;
+
+expresionNegacion ::= 
+    NOT LLAVEPARENTESISABRE valorLogico LLAVEPARENTESISABRE 
+;
+
+expresionMultiple ::= 
+    SIGNO LLAVEPARENTESISCIERRA expresionMultiple LLAVEPARENTESISCIERRA Op_unarias |
+    SIGNO LLAVEPARENTESISCIERRA expresionBinariaUnaria LLAVEPARENTESISCIERRA Op_unarias |
+    SIGNO LLAVEPARENTESISCIERRA expresionBinaria LLAVEPARENTESISCIERRA Op_unarias |
+    SIGNO LLAVEPARENTESISCIERRA expresionUnaria LLAVEPARENTESISCIERRA Op_unarias |
+    SIGNO LLAVEPARENTESISCIERRA expresionConjuntiva LLAVEPARENTESISCIERRA Op_unarias |
+    SIGNO LLAVEPARENTESISCIERRA expresionRelacion LLAVEPARENTESISCIERRA Op_unarias |
+    SIGNO LLAVEPARENTESISCIERRA valorNumerico LLAVEPARENTESISCIERRA Op_unarias |
+    SIGNO LLAVEPARENTESISCIERRA valorLogico LLAVEPARENTESISCIERRA Op_unarias |
+    LLAVEPARENTESISCIERRA expresionMultiple LLAVEPARENTESISCIERRA Op_unarias |
+    LLAVEPARENTESISCIERRA expresionBinariaUnaria LLAVEPARENTESISCIERRA Op_unarias |
+    LLAVEPARENTESISCIERRA expresionBinaria LLAVEPARENTESISCIERRA Op_unarias |
+    LLAVEPARENTESISCIERRA expresionUnaria LLAVEPARENTESISCIERRA Op_unarias |
+    LLAVEPARENTESISCIERRA expresionConjuntiva LLAVEPARENTESISCIERRA Op_unarias |
+    LLAVEPARENTESISCIERRA expresionRelacion LLAVEPARENTESISCIERRA Op_unarias |
+    LLAVEPARENTESISCIERRA valorNumerico LLAVEPARENTESISCIERRA Op_unarias |
+    LLAVEPARENTESISCIERRA valorLogico LLAVEPARENTESISCIERRA Op_unarias |
+    SIGNO LLAVEPARENTESISCIERRA expresionMultiple LLAVEPARENTESISCIERRA |
+    SIGNO LLAVEPARENTESISCIERRA expresionBinariaUnaria LLAVEPARENTESISCIERRA |
+    SIGNO LLAVEPARENTESISCIERRA expresionBinaria LLAVEPARENTESISCIERRA |
+    SIGNO LLAVEPARENTESISCIERRA expresionUnaria LLAVEPARENTESISCIERRA |
+    SIGNO LLAVEPARENTESISCIERRA expresionConjuntiva LLAVEPARENTESISCIERRA |
+    SIGNO LLAVEPARENTESISCIERRA expresionRelacion LLAVEPARENTESISCIERRA |
+    SIGNO LLAVEPARENTESISCIERRA valorNumerico LLAVEPARENTESISCIERRA |
+    SIGNO LLAVEPARENTESISCIERRA valorLogico LLAVEPARENTESISCIERRA |
+    LLAVEPARENTESISCIERRA expresionMultiple LLAVEPARENTESISCIERRA |
+    LLAVEPARENTESISCIERRA expresionBinariaUnaria LLAVEPARENTESISCIERRA |
+    LLAVEPARENTESISCIERRA expresionBinaria LLAVEPARENTESISCIERRA |
+    LLAVEPARENTESISCIERRA expresionUnaria LLAVEPARENTESISCIERRA |
+    LLAVEPARENTESISCIERRA expresionConjuntiva LLAVEPARENTESISCIERRA |
+    LLAVEPARENTESISCIERRA expresionRelacion LLAVEPARENTESISCIERRA |
+    LLAVEPARENTESISCIERRA valorNumerico LLAVEPARENTESISCIERRA |
+    LLAVEPARENTESISCIERRA valorLogico LLAVEPARENTESISCIERRA |
+    expresionMultiple Op_relacional expresionMultiple |
+    expresionMultiple Op_comparacion expresionMultiple |
+    expresionMultiple Op_logico expresionMultiple |
+    expresionMultiple Op_binarias expresionMultiple
+;
+
+asignarVariable	::= 
+    IDENTIFICADOR IGUAL literal FINALEXPRESION |
+    IDENTIFICADOR IGUAL expresion FINALEXPRESION |
+    IDENTIFICADOR IGUAL IDENTIFICADOR FINALEXPRESION |
+    IDENTIFICADOR IGUAL invocarFuncion FINALEXPRESION |
+    IDENTIFICADOR IGUAL NULL FINALEXPRESION |
+    IDENTIFICADOR IGUAL valorArreglo FINALEXPRESION
+;
+    
+modificarArreglo ::= 
+    IDENTIFICADOR LLAVECUADRADAABRE valorNumerico LLAVECUADRADACIERRA IGUAL literal FINALEXPRESION |
+    IDENTIFICADOR LLAVECUADRADAABRE valorNumerico LLAVECUADRADACIERRA IGUAL expresion FINALEXPRESION |
+    IDENTIFICADOR LLAVECUADRADAABRE valorNumerico LLAVECUADRADACIERRA IGUAL invocarFuncion FINALEXPRESION |
+    IDENTIFICADOR LLAVECUADRADAABRE valorNumerico LLAVECUADRADACIERRA IGUAL IDENTIFICADOR FINALEXPRESION |
+    IDENTIFICADOR LLAVECUADRADAABRE valorNumerico LLAVECUADRADACIERRA IGUAL valorArreglo FINALEXPRESION
+;
+
+writer ::= 
+    WRITE LLAVEPARENTESISABRE literal  LLAVEPARENTESISCIERRA FINALEXPRESION |
+    WRITE LLAVEPARENTESISABRE string LLAVEPARENTESISCIERRA FINALEXPRESION |
+    WRITE LLAVEPARENTESISABRE int LLAVEPARENTESISCIERRA FINALEXPRESION |
+    WRITE LLAVEPARENTESISABRE float LLAVEPARENTESISCIERRA FINALEXPRESION |
+    WRITE LLAVEPARENTESISABRE valorArreglo LLAVEPARENTESISCIERRA FINALEXPRESION
+;
+
+reader ::= 
+    READ LLAVEPARENTESISABRE IDENTIFICADOR LLAVEPARENTESISCIERRA FINALEXPRESION
+;
+
+crearParam ::= 
+    PARAM SEP tipoVariable SEP IDENTIFICADOR FINALEXPRESION 
+;
+
+estrucControl ::= 
+    if | 
+    switch | 
+    while | 
+    for 
+;
+
+if	::= 
+    IF LLAVEPARENTESISABRE valorLogico LLAVEPARENTESISCIERRA INICIOFINBLOQUE bloqueControl INICIOFINBLOQUE else |
+    IF LLAVEPARENTESISABRE valorLogico LLAVEPARENTESISCIERRA INICIOFINBLOQUE bloqueControl INICIOFINBLOQUE 
+;
+
+bloqueControl ::= 
+    bloqueCod | 
+    break |
+    bloqueControl bloqueCod |
+    bloqueControl break
+;
+ 
+break ::= 
+    BREAK FINALEXPRESION
+;
+
+else ::= 
+    ELSE INICIOFINBLOQUE bloqueControl INICIOFINBLOQUE
+;
+
+switch ::= 
+    SWITCH LLAVEPARENTESISABRE IDENTIFICADOR LLAVEPARENTESISCIERRA  INICIOFINBLOQUE case INICIOFINBLOQUE |
+    SWITCH LLAVEPARENTESISABRE expresion LLAVEPARENTESISCIERRA  INICIOFINBLOQUE case INICIOFINBLOQUE |
+    SWITCH LLAVEPARENTESISABRE invocarFuncion LLAVEPARENTESISCIERRA  INICIOFINBLOQUE case INICIOFINBLOQUE |
+    SWITCH LLAVEPARENTESISABRE literal LLAVEPARENTESISCIERRA  INICIOFINBLOQUE case INICIOFINBLOQUE |
+    SWITCH LLAVEPARENTESISABRE valorArreglo LLAVEPARENTESISCIERRA  INICIOFINBLOQUE case INICIOFINBLOQUE
+;
+
+case ::= 
+    CASE SEP IDENTIFICADOR SEP INICIOFINBLOQUE bloqueControl INICIOFINBLOQUE |
+    CASE SEP expresion SEP INICIOFINBLOQUE bloqueControl INICIOFINBLOQUE |
+    CASE SEP invocarFuncion SEP INICIOFINBLOQUE bloqueControl INICIOFINBLOQUE |
+    CASE SEP literal SEP INICIOFINBLOQUE bloqueControl INICIOFINBLOQUE |
+    CASE SEP valorArreglo SEP INICIOFINBLOQUE bloqueControl INICIOFINBLOQUE |
+    case case
+;
+
+while ::= 
+    WHILE LLAVEPARENTESISABRE valorLogico LLAVEPARENTESISCIERRA INICIOFINBLOQUE bloqueControl INICIOFINBLOQUE 
+;
+
+for ::= 
+    FOR SEP IDENTIFICADOR SEP IN SEP RANGE LLAVEPARENTESISABRE valorNumerico COMA valorNumerico LLAVEPARENTESISCIERRA INICIOFINBLOQUE bloqueControl INICIOFINBLOQUE |
+    FOR SEP IDENTIFICADOR SEP IN SEP RANGE LLAVEPARENTESISABRE valorNumerico COMA valorNumerico COMA valorNumerico LLAVEPARENTESISCIERRA INICIOFINBLOQUE bloqueControl INICIOFINBLOQUE |
+    FOR SEP IDENTIFICADOR SEP IN SEP RANGE LLAVEPARENTESISABRE valorNumerico LLAVEPARENTESISCIERRA INICIOFINBLOQUE bloqueControl INICIOFINBLOQUE
+;
+
+return	::= 
+    RETURN SEP int FINALEXPRESION |
+    RETURN SEP char FINALEXPRESION |
+    RETURN SEP float FINALEXPRESION |
+    RETURN SEP Op_booleano FINALEXPRESION |
+    RETURN SEP invocarFuncion FINALEXPRESION |
+    RETURN SEP valorArreglo FINALEXPRESION |
+    RETURN SEP FINALEXPRESION
+;
+
+
+comentario ::= 
+    comentarioLinea | 
+    comentarioCompuesto
+;
+
+comentarioLinea ::= 
+    APERTURACIERRECOMENTARIOSIMPLE string APERTURACIERRECOMENTARIOSIMPLE 
+;
+
+comentarioCompuesto ::= 
+    APERTURACOMENTARIOCOMPUESTO bloqueComentario CIERRECOMENTARIOCOMPUESTO 
+;
+
+bloqueComentario ::=
+    bloqueComentario bloqueComentario |
+    string saltoLinea
+;
+
+saltoLinea ::=
+    saltoLinea saltoLinea |
+    SALTOLINEA
 ;
